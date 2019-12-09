@@ -17,19 +17,12 @@ public class Move : MonoBehaviour
 
     void FixedUpdate () {
 
-        var c = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log(c);
-        Debug.Log(SceneManager.sceneCountInBuildSettings);
         // LoadSceneAsync
         if (turnLeft) {
-            var next = (c-1+SceneManager.sceneCountInBuildSettings)%SceneManager.sceneCountInBuildSettings;
-            SceneManager.LoadScene(next);
-            //transform.Rotate(new Vector3(10, 0, 0) * Time.deltaTime);
+            transform.Rotate(new Vector3(10, 0, 0) * Time.deltaTime);
         }
         if (turnRight) {
-            var next = (c+1+SceneManager.sceneCountInBuildSettings)%SceneManager.sceneCountInBuildSettings;
-            SceneManager.LoadScene(next);
-            //transform.Rotate(new Vector3(-10, 0, 0) * Time.deltaTime);
+            transform.Rotate(new Vector3(-10, 0, 0) * Time.deltaTime);
         }
     }
 }
