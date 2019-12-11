@@ -22,12 +22,10 @@ public class ChangeScene : MonoBehaviour
         if (prev) {
             var next = (c-1+SceneManager.sceneCountInBuildSettings)%SceneManager.sceneCountInBuildSettings;
             SceneManager.LoadScene(next);
-            //transform.Rotate(new Vector3(10, 0, 0) * Time.deltaTime);
         }
         if (next) {
             var next = (c+1+SceneManager.sceneCountInBuildSettings)%SceneManager.sceneCountInBuildSettings;
             SceneManager.LoadScene(next);
-            //transform.Rotate(new Vector3(-10, 0, 0) * Time.deltaTime);
         }
     }
 }
