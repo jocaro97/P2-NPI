@@ -1,5 +1,6 @@
 using Microsoft.Kinect;
 using System;
+using Windows.Kinect;
 
 namespace KinectSimpleGesture
 {
@@ -19,7 +20,7 @@ namespace KinectSimpleGesture
             _segments = segments
         }
 
-        public void Update(Skeleton skeleton)
+        public void Update(Body skeleton)
         {
             GesturePartResult result = _segments[_currentSegment].Update(skeleton);
 
