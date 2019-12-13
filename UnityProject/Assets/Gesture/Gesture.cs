@@ -1,9 +1,16 @@
 using Microsoft.Kinect;
 using System;
 using Windows.Kinect;
+using UnityEngine;
+using System.Collections;
 
 namespace KinectSimpleGesture
 {
+    public interface IGestureSegment
+    {
+        GesturePartResult Update(Body skeleton);
+    }
+
     public class Gesture
     {
 
@@ -17,7 +24,7 @@ namespace KinectSimpleGesture
         public Gesture(IGestureSegment[] segments, int window_size)
         {
             _window_size = window_size;
-            _segments = segments
+            _segments = segments;
         }
 
         public void Update(Body skeleton)

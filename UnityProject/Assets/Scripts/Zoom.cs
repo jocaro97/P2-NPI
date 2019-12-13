@@ -7,7 +7,7 @@ public class Zoom : MonoBehaviour
 {
     public bool zoomIn;
     public bool zoomOut;
-    public float zoomMultiplier = 1.0;
+    public float zoomMultiplier = 1.0F;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,7 @@ public class Zoom : MonoBehaviour
 
     void FixedUpdate () {
 
-        var zoomAmount = Time.deltaTime * zoomAmount;
+        var zoomAmount = Time.deltaTime * zoomMultiplier;
 
         if (zoomIn) {
             transform.Translate(zoomAmount, zoomAmount, zoomAmount, Space.World);

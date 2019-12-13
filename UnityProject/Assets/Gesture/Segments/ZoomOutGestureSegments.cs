@@ -1,16 +1,14 @@
-
+using UnityEngine;
+using System.Collections;
 using Microsoft.Kinect;
+using Windows.Kinect;
 
 namespace KinectSimpleGesture
 {
-    public interface IGestureSegment
-    {
-        GesturePartResult Update(Skeleton skeleton);
-    }
-
+  
     public class ZoomOutSegment1 : IGestureSegment
     {
-        public GesturePartResult Update(Skeleton skeleton)
+        public GesturePartResult Update(Body skeleton)
         {
             if (
                 skeleton.Joints[JointType.HandRight].Position.Z > skeleton.Joints[JointType.ElbowRight].Position.Z - 0.2
@@ -30,7 +28,7 @@ namespace KinectSimpleGesture
 
     public class ZoomOutSegment2 : IGestureSegment
     {
-        public GesturePartResult Update(Skeleton skeleton)
+        public GesturePartResult Update(Body skeleton)
         {
             if (
                 skeleton.Joints[JointType.HandRight].Position.Z < skeleton.Joints[JointType.ElbowRight].Position.Z - 0.2

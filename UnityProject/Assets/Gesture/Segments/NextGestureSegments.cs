@@ -1,16 +1,14 @@
-
+using UnityEngine;
+using System.Collections;
 using Microsoft.Kinect;
+using Windows.Kinect;
 
 namespace KinectSimpleGesture
 {
-    public interface IGestureSegment
-    {
-        GesturePartResult Update(Skeleton skeleton);
-    }
-
+   
     public class NextSegment1 : IGestureSegment
     {
-        public GesturePartResult Update(Skeleton skeleton)
+        public GesturePartResult Update(Body skeleton)
         {
             if (
                 skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.ElbowRight].Position.X
@@ -25,7 +23,7 @@ namespace KinectSimpleGesture
 
     public class NextSegment2 : IGestureSegment
     {
-        public GesturePartResult Update(Skeleton skeleton)
+        public GesturePartResult Update(Body skeleton)
         {
             if (
                 skeleton.Joints[JointType.HandRight].Position.X < skeleton.Joints[JointType.ElbowRight].Position.X
