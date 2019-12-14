@@ -10,6 +10,8 @@ public class BodySourceView : MonoBehaviour
     
     private Dictionary<ulong, GameObject> _Bodies = new Dictionary<ulong, GameObject>();
     private BodySourceManager _BodyManager;
+
+    private Gesture _NextGesture = new Gesture("Next", 50);
     
     private Dictionary<Kinect.JointType, Kinect.JointType> _BoneMap = new Dictionary<Kinect.JointType, Kinect.JointType>()
     {
@@ -42,6 +44,11 @@ public class BodySourceView : MonoBehaviour
         { Kinect.JointType.SpineShoulder, Kinect.JointType.Neck },
         { Kinect.JointType.Neck, Kinect.JointType.Head },
     };
+
+    void Start ()
+    {
+        _NextGesture.GestureRecognized += Gesture_GestureRecognized;
+    }
     
     void Update () 
     {
@@ -97,6 +104,7 @@ public class BodySourceView : MonoBehaviour
             
             if(body.IsTracked)
             {
+                _NextGesture.update(body);
                 if(!_Bodies.ContainsKey(body.TrackingId))
                 {
                     _Bodies[body.TrackingId] = CreateBodyObject(body.TrackingId);
@@ -175,5 +183,10 @@ public class BodySourceView : MonoBehaviour
     private static Vector3 GetVector3FromJoint(Kinect.Joint joint)
     {
         return new Vector3(joint.Position.X * 10, joint.Position.Y * 10, joint.Position.Z * 10);
+    }
+
+    static void Gesture_GestureRecognized(object sender, EventArgs e)
+    {
+        Debug.Log("You just CHANGE DE SCENE!");
     }
 }
