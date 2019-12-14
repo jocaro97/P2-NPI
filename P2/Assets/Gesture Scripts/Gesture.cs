@@ -21,15 +21,15 @@ namespace KinectSimpleGesture
 
         public event EventHandler GestureRecognized;
 
-        public Gesture(string type, int window_size)
+        public Gesture(string type)
         {
             this._type = type;
-            this._window_size = window_size;
 
             switch (type)
             {
                 case "Next":
-                    _segments = new IGestureSegment[] {new NextSegment1(), new NextSegment2() };
+                    this._window_size = 20;
+                    _segments = new IGestureSegment[] {new NextSegment1(), new NextSegment2() , new NextSegment2(), new NextSegment2() , new NextSegment2(), new NextSegment2() , new NextSegment2()};
                     break;
                 case "RotateRight":
                     _segments = new IGestureSegment[] {new RotateRightSegment1(), new RotateRightSegment2()};
@@ -41,6 +41,7 @@ namespace KinectSimpleGesture
                     _segments = new IGestureSegment[] {new PrevSegment1(), new PrevSegment2()};
                     break;               
                 case "ZoomIn":
+                    _window_size = 50;
                     _segments = new IGestureSegment[] {new ZoomInSegment1(), new ZoomInSegment2()};
                     break;
                 case "ZoomOut":
@@ -55,7 +56,7 @@ namespace KinectSimpleGesture
 
             if (result == GesturePartResult.Succeeded)
             {
-                Debug.Log(_type + ": Segmento " + _currentSegment.ToString() + " reconocido");
+                // Debug.Log(_type + ": Segmento " + _currentSegment.ToString() + " reconocido");
                 if (_currentSegment + 1 < _segments.Length)
                 {
                     _currentSegment++;
@@ -74,7 +75,7 @@ namespace KinectSimpleGesture
                 if (_frameCount == _window_size ||
                     (_currentSegment > 0 && _segments[_currentSegment -1].Update(skeleton) != GesturePartResult.Succeeded))
                     {
-                        Debug.Log(_type + ": Segmento " + _currentSegment.ToString() + " fallido.");
+                        // Debug.Log(_type + ": Segmento " + _currentSegment.ToString() + " fallido.");
 
                         Reset();
                     }
