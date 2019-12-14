@@ -72,7 +72,7 @@ namespace KinectSimpleGesture
             }
             else {
                 if (_frameCount == _window_size ||
-                    (_currentSegment > 0 && _segments.[_currentSegment -1].Update(skeleton) != GesturePartResult.Succeeded))
+                    (_currentSegment > 0 && _segments[_currentSegment -1].Update(skeleton) != GesturePartResult.Succeeded))
                     {
                         Debug.Log(_type + ": Segmento " + _currentSegment.ToString() + " fallido.");
 
