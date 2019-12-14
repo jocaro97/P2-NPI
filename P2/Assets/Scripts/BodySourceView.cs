@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using KinectSimpleGesture;
+using System;
 using Kinect = Windows.Kinect;
 
 public class BodySourceView : MonoBehaviour 
@@ -104,7 +106,7 @@ public class BodySourceView : MonoBehaviour
             
             if(body.IsTracked)
             {
-                _NextGesture.update(body);
+                _NextGesture.Update(body);
                 if(!_Bodies.ContainsKey(body.TrackingId))
                 {
                     _Bodies[body.TrackingId] = CreateBodyObject(body.TrackingId);

@@ -17,12 +17,14 @@ namespace KinectSimpleGesture
         IGestureSegment[] _segments;
         int _currentSegment = 0;
         int _frameCount = 0;
+        string _type;
 
         public event EventHandler GestureRecognized;
 
-        public Gesture(string type, int _window_size)
+        public Gesture(string type, int window_size)
         {
-            this._window_size = _window_size;
+            this._type = type;
+            this._window_size = window_size;
 
             switch (type)
             {
@@ -43,7 +45,7 @@ namespace KinectSimpleGesture
                     break;
                 case "ZoomOut":
                     _segments = new IGestureSegment[] {new ZoomOutSegment1(), new ZoomOutSegment2()};
-                    break
+                    break;
             }
         }
 
@@ -53,6 +55,7 @@ namespace KinectSimpleGesture
 
             if (result == GesturePartResult.Succeeded)
             {
+                Debug.Log(_type + ": Segmento " + _currentSegment.ToString() + " reconocido");
                 if (_currentSegment + 1 < _segments.Length)
                 {
                     _currentSegment++;
@@ -67,14 +70,21 @@ namespace KinectSimpleGesture
                     }
                 }
             }
-            else if (result == GesturePartResult.Failed || _frameCount == _window_size)
-            {
-                Reset();
-            }
-            else
-            {
-                _frameCount++;
-            }
+            else {
+                if (_frameCount == _window_size ||
+                    (_currentSegment > 0 && _segments.[_currentSegment -1].Update(skeleton) != GesturePartResult.Succeeded))
+                    {
+                        Debug.Log(_type + ": Segmento " + _currentSegment.ToString() + " fallido.");
+
+                        Reset();
+                    }
+                else
+                    {
+                        // Debug.Log(_type + ": Segmento " + _currentSegment.ToString() + " no reconocido, frame_count: " + _frameCount);
+
+                        _frameCount++;
+                    }
+            } 
         }
 
         public void Reset()
