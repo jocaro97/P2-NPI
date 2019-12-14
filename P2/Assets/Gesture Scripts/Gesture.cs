@@ -20,10 +20,35 @@ namespace KinectSimpleGesture
 
         public event EventHandler GestureRecognized;
 
-        public Gesture(IGestureSegment[] segments, int window_size)
+        public Gesture(string type)
         {
-            _window_size = window_size;
-            _segments = segments;
+            switch (type)
+            {
+                case "Next":
+                    _window_size = 50;
+                    _segments = new IGestureSegment[] {new NextSegment1(), new NextSegment2() };
+                    break;
+                case "RotateRight":
+                    _window_size = 50;
+                    _segments = new IGestureSegment[] {new RotateRightSegment1(), new RotateRightSegment2()};
+                    break;
+                case "RotateLeft":
+                    _window_size = 50;
+                    _segments = new IGestureSegment[] {new RotateLeftSegment1(), new RotateLeftSegment2()};
+                    break;               
+                case "Prev":
+                    _window_size = 50;
+                    _segments = new IGestureSegment[] {new PrevSegment1(), new PrevSegment2()};
+                    break;               
+                case "ZoomIn":
+                    _window_size = 50;
+                    _segments = new IGestureSegment[] {new ZoomInSegment1(), new ZoomInSegment2()};
+                    break;
+                case "ZoomOut":
+                    _window_size = 50;
+                    _segments = new IGestureSegment[] {new ZoomOutSegment1(), new ZoomOutSegment2()};
+                    break
+            }
         }
 
         public void Update(Body skeleton)
