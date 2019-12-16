@@ -56,7 +56,7 @@ namespace KinectSimpleGesture
 
             if (result == GesturePartResult.Succeeded)
             {
-                // Debug.Log(_type + ": Segmento " + _currentSegment.ToString() + " reconocido");
+                Debug.Log(_type + ": Segmento " + _currentSegment.ToString() + " reconocido");
                 if (_currentSegment + 1 < _segments.Length)
                 {
                     _currentSegment++;
@@ -75,7 +75,7 @@ namespace KinectSimpleGesture
                 if (_frameCount == _window_size ||
                     (_currentSegment > 0 && _segments[_currentSegment -1].Update(skeleton) != GesturePartResult.Succeeded))
                     {
-                        // Debug.Log(_type + ": Segmento " + _currentSegment.ToString() + " fallido.");
+                        Debug.Log(_type + ": Segmento " + _currentSegment.ToString() + " fallido.");
 
                         Reset();
                     }

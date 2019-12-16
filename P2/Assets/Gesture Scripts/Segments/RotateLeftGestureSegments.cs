@@ -49,7 +49,7 @@ namespace KinectSimpleGesture
         public GesturePartResult Update(Body skeleton)
         {
             if (
-                skeleton.Joints[JointType.HandRight].Position.X < skeleton.Joints[JointType.MidSpine].Position.X
+                skeleton.Joints[JointType.HandRight].Position.X < skeleton.Joints[JointType.SpineMid].Position.X
                 &&
                 skeleton.Joints[JointType.HandLeft].Position.X < skeleton.Joints[JointType.ElbowLeft].Position.X
                 &&

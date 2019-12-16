@@ -17,7 +17,7 @@ public class BodySourceView : MonoBehaviour
     private static ChangeScene _ChangeScene;
 
     private Gesture _NextGesture = new Gesture("Next");
-    private Gesture _ZoomInGesture = new Gesture("ZoomIn");
+    // private Gesture _ZoomInGesture = new Gesture("ZoomIn");
     
     private Dictionary<Kinect.JointType, Kinect.JointType> _BoneMap = new Dictionary<Kinect.JointType, Kinect.JointType>()
     {
@@ -56,7 +56,7 @@ public class BodySourceView : MonoBehaviour
         _ChangeScene = Item.GetComponent<ChangeScene>();
         
         _NextGesture.GestureRecognized += Next_GestureRecognized;
-        _ZoomInGesture.GestureRecognized += Zoom_GestureRecognized;
+        // _ZoomInGesture.GestureRecognized += Zoom_GestureRecognized;
     }
 
     void Update () 
@@ -115,7 +115,7 @@ public class BodySourceView : MonoBehaviour
             if(body.IsTracked)
             {
                 _NextGesture.Update(body);
-                _ZoomInGesture.Update(body);
+                // _ZoomInGesture.Update(body);
                 if(!_Bodies.ContainsKey(body.TrackingId))
                 {
                     _Bodies[body.TrackingId] = CreateBodyObject(body.TrackingId);
