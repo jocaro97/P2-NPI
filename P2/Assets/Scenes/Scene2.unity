@@ -231,7 +231,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d9f9fdd586a99134187c6e4ab9589660, type: 2}
+  - {fileID: 2100000, guid: 5ab7b70a166dc53479e63cf41bebfee5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -302,8 +302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42bc09554607c0748ba99c660206ccdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BoneMaterial: {fileID: 0}
-  BodySourceManager: {fileID: 0}
+  BoneMaterial: {fileID: 2100000, guid: 1470908bf5f14144c9f8ff0f37ace35f, type: 2}
+  BodySourceManager: {fileID: 1317695067}
 --- !u!4 &1053484371
 Transform:
   m_ObjectHideFlags: 0
@@ -666,7 +666,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f17d3d1298bc2084fbe7acc65ac2c419, type: 2}
+  - {fileID: 2100000, guid: 2871b767768ceaf489a7297cc89f148f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

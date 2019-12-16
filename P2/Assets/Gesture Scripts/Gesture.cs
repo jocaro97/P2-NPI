@@ -29,7 +29,7 @@ namespace KinectSimpleGesture
             {
                 case "Next":
                     this._window_size = 20;
-                    _segments = new IGestureSegment[] {new NextSegment1(), new NextSegment2() , new NextSegment2(), new NextSegment2() , new NextSegment2(), new NextSegment2() , new NextSegment2()};
+                    _segments = new IGestureSegment[] { new NextSegment1(), new NextSegment2() , new NextSegment2(), new NextSegment2() , new NextSegment2(), new NextSegment2() , new NextSegment2()};
                     break;
                 case "RotateRight":
                     _segments = new IGestureSegment[] {new RotateRightSegment1(), new RotateRightSegment2()};

@@ -4,16 +4,15 @@ using System.Collections.Generic;
 using KinectSimpleGesture;
 using System;
 using Kinect = Windows.Kinect;
+using UnityEngine.SceneManagement;
 
 public class BodySourceView : MonoBehaviour 
 {
     public Material BoneMaterial;
     public GameObject BodySourceManager;
-    public GameObject Item;
     
     private Dictionary<ulong, GameObject> _Bodies = new Dictionary<ulong, GameObject>();
     private BodySourceManager _BodyManager;
-    private ChangeScene _ChangeScene = Item.GetComponent<ChangeScene>;
 
     private Gesture _NextGesture = new Gesture("Next");
     private Gesture _ZoomInGesture = new Gesture("ZoomIn");
@@ -49,12 +48,14 @@ public class BodySourceView : MonoBehaviour
         { Kinect.JointType.SpineShoulder, Kinect.JointType.Neck },
         { Kinect.JointType.Neck, Kinect.JointType.Head },
     };
-
+  
     void Start ()
     {
         _NextGesture.GestureRecognized += Gesture_GestureRecognized;
+       // Item.GetComponent<ChangeScene>().enabled = false;
+
     }
-    
+
     void Update () 
     {
         if (BodySourceManager == null)
@@ -195,6 +196,8 @@ public class BodySourceView : MonoBehaviour
     static void Gesture_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("You just CHANGE DE SCENE!");
-        _ChangeScene.next = true;
+        var c = SceneManager.GetActiveScene().buildIndex;
+        var next_scene = (c + 1 + SceneManager.sceneCountInBuildSettings) % SceneManager.sceneCountInBuildSettings;
+        SceneManager.LoadScene(next_scene);
     }
 }
