@@ -10,9 +10,11 @@ public class BodySourceView : MonoBehaviour
 {
     public Material BoneMaterial;
     public GameObject BodySourceManager;
+    public static GameObject objeto;
     
     private Dictionary<ulong, GameObject> _Bodies = new Dictionary<ulong, GameObject>();
     private BodySourceManager _BodyManager;
+    private static Zoom _Zoom;
 
     private Gesture _NextGesture = new Gesture("Next");
     private Gesture _ZoomInGesture = new Gesture("ZoomIn");
@@ -51,9 +53,8 @@ public class BodySourceView : MonoBehaviour
   
     void Start ()
     {
-        _NextGesture.GestureRecognized += Gesture_GestureRecognized;
-       // Item.GetComponent<ChangeScene>().enabled = false;
-
+        _NextGesture.GestureRecognized += Next_GestureRecognized;
+        _ZoomInGesture.GestureRecognized += Zoom_GestureRecognized;
     }
 
     void Update () 
@@ -64,6 +65,7 @@ public class BodySourceView : MonoBehaviour
         }
         
         _BodyManager = BodySourceManager.GetComponent<BodySourceManager>();
+
         if (_BodyManager == null)
         {
             return;
@@ -111,6 +113,7 @@ public class BodySourceView : MonoBehaviour
             if(body.IsTracked)
             {
                 _NextGesture.Update(body);
+                _ZoomInGesture.Update(body);
                 if(!_Bodies.ContainsKey(body.TrackingId))
                 {
                     _Bodies[body.TrackingId] = CreateBodyObject(body.TrackingId);
@@ -193,11 +196,19 @@ public class BodySourceView : MonoBehaviour
         return new Vector3(joint.Position.X * 10, joint.Position.Y * 10, joint.Position.Z * 10);
     }
 
-    static void Gesture_GestureRecognized(object sender, EventArgs e)
+    static void Next_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("You just CHANGE DE SCENE!");
+        //INTENTAR CAMBIAR
         var c = SceneManager.GetActiveScene().buildIndex;
         var next_scene = (c + 1 + SceneManager.sceneCountInBuildSettings) % SceneManager.sceneCountInBuildSettings;
         SceneManager.LoadScene(next_scene);
+    }
+
+    static void Zoom_GestureRecognized(object sender, EventArgs e)
+    {
+        Debug.Log("You just ZOOM THE OBJECT!");
+        _Zoom = objeto.GetComponent<Zoom>();
+        _Zoom.zoomIn = true;
     }
 }
