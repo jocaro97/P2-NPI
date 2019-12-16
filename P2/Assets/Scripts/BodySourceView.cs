@@ -10,11 +10,11 @@ public class BodySourceView : MonoBehaviour
 {
     public Material BoneMaterial;
     public GameObject BodySourceManager;
-    public static GameObject objeto;
+    public GameObject Item;
     
     private Dictionary<ulong, GameObject> _Bodies = new Dictionary<ulong, GameObject>();
     private BodySourceManager _BodyManager;
-    private static Zoom _Zoom;
+    private static ChangeScene _ChangeScene;
 
     private Gesture _NextGesture = new Gesture("Next");
     private Gesture _ZoomInGesture = new Gesture("ZoomIn");
@@ -53,6 +53,8 @@ public class BodySourceView : MonoBehaviour
   
     void Start ()
     {
+        _ChangeScene = Item.GetComponent<ChangeScene>();
+        
         _NextGesture.GestureRecognized += Next_GestureRecognized;
         _ZoomInGesture.GestureRecognized += Zoom_GestureRecognized;
     }
@@ -198,17 +200,12 @@ public class BodySourceView : MonoBehaviour
 
     static void Next_GestureRecognized(object sender, EventArgs e)
     {
-        Debug.Log("You just CHANGE DE SCENE!");
-        //INTENTAR CAMBIAR
-        var c = SceneManager.GetActiveScene().buildIndex;
-        var next_scene = (c + 1 + SceneManager.sceneCountInBuildSettings) % SceneManager.sceneCountInBuildSettings;
-        SceneManager.LoadScene(next_scene);
+        Debug.Log("Next gesture");
+        _ChangeScene.next = true;
     }
 
     static void Zoom_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("You just ZOOM THE OBJECT!");
-        _Zoom = objeto.GetComponent<Zoom>();
-        _Zoom.zoomIn = true;
     }
 }
