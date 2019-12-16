@@ -20,13 +20,15 @@ public class ChangeScene : MonoBehaviour
         // LoadSceneAsync
         if (prev)
         {
-            var next = (c - 1 + SceneManager.sceneCountInBuildSettings) % SceneManager.sceneCountInBuildSettings;
-            SceneManager.LoadScene(next);
+            prev = false;
+            var next_scene = (c - 1 + SceneManager.sceneCountInBuildSettings) % SceneManager.sceneCountInBuildSettings;
+            SceneManager.LoadScene(next_scene);
         }
         if (next)
         {
-            var next = (c + 1 + SceneManager.sceneCountInBuildSettings) % SceneManager.sceneCountInBuildSettings;
-            SceneManager.LoadScene(next);
+            next = false;
+            var next_scene = (c + 1 + SceneManager.sceneCountInBuildSettings) % SceneManager.sceneCountInBuildSettings;
+            SceneManager.LoadScene(next_scene);
         }
     }
 }

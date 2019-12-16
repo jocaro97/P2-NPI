@@ -9,11 +9,14 @@ public class BodySourceView : MonoBehaviour
 {
     public Material BoneMaterial;
     public GameObject BodySourceManager;
+    public GameObject Item;
     
     private Dictionary<ulong, GameObject> _Bodies = new Dictionary<ulong, GameObject>();
     private BodySourceManager _BodyManager;
+    private ChangeScene _ChangeScene = Item.GetComponent<ChangeScene>;
 
-    private Gesture _NextGesture = new Gesture("ZoomIn");
+    private Gesture _NextGesture = new Gesture("Next");
+    private Gesture _ZoomInGesture = new Gesture("ZoomIn");
     
     private Dictionary<Kinect.JointType, Kinect.JointType> _BoneMap = new Dictionary<Kinect.JointType, Kinect.JointType>()
     {
@@ -192,8 +195,6 @@ public class BodySourceView : MonoBehaviour
     static void Gesture_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("You just CHANGE DE SCENE!");
-        ChangeScene _ChangeScene = new ChangeScene();
         _ChangeScene.next = true;
-
     }
 }
