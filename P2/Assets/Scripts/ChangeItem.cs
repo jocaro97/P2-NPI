@@ -7,6 +7,9 @@ public class ChangeScene : MonoBehaviour
 {
     public bool next;
     public bool prev;
+    public GameObject[] objetos;
+    public int _currentObject = 0;
+
     void Start()
     {
         next = false;
@@ -21,14 +24,16 @@ public class ChangeScene : MonoBehaviour
         if (prev)
         {
             prev = false;
-            var next_scene = (c - 1 + SceneManager.sceneCountInBuildSettings) % SceneManager.sceneCountInBuildSettings;
-            SceneManager.LoadScene(next_scene);
+            objetos[_currentObject].SetActive(false);
+            _currentObject = (_currentObject+1) % objetos.Length;
+            objetos[_currentObject].SetActive(true);
         }
         if (next)
         {
             next = false;
-            var next_scene = (c + 1 + SceneManager.sceneCountInBuildSettings) % SceneManager.sceneCountInBuildSettings;
-            SceneManager.LoadScene(next_scene);
+            objetos[_currentObject].SetActive(false);
+            _currentObject = (objetos.Length + _currentObject-1) % objetos.Length;
+            objetos[_currentObject].SetActive(true);
         }
     }
 }
