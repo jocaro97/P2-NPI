@@ -8,7 +8,7 @@ public class Zoom : MonoBehaviour
     public bool zoomIn;
     public bool zoomOut;
     public float zoomMultiplier = 1.0F;
-    // Start is called before the first frame update
+
     void Start()
     {
         zoomIn = false;
@@ -22,11 +22,11 @@ public class Zoom : MonoBehaviour
 
         if (zoomIn)
         {
-            transform.Translate(zoomAmount, zoomAmount, zoomAmount, Space.World);
+            transform.Translate(0, 0, -1, Space.World);
         }
         if (zoomOut)
         {
-            transform.Translate(-zoomAmount, -zoomAmount, -zoomAmount, Space.World);
+            transform.Translate(0, 0, +1, Space.World);
         }
     }
 
