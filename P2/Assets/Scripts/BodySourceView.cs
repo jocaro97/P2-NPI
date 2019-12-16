@@ -192,5 +192,8 @@ public class BodySourceView : MonoBehaviour
     static void Gesture_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("You just CHANGE DE SCENE!");
+        ChangeScene _ChangeScene = new ChangeScene();
+        _ChangeScene.next = true;
+
     }
 }
