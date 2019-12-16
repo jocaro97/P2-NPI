@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ChangeScene : MonoBehaviour
+public class ChangeItem : MonoBehaviour
 {
     public bool next;
     public bool prev;
@@ -26,6 +26,7 @@ public class ChangeScene : MonoBehaviour
             prev = false;
             objetos[_currentObject].SetActive(false);
             _currentObject = (_currentObject+1) % objetos.Length;
+            objetos[_currentObject].transform.position = new Vector3(0,5,0);
             objetos[_currentObject].SetActive(true);
         }
         if (next)
@@ -33,6 +34,7 @@ public class ChangeScene : MonoBehaviour
             next = false;
             objetos[_currentObject].SetActive(false);
             _currentObject = (objetos.Length + _currentObject-1) % objetos.Length;
+            objetos[_currentObject].transform.position = new Vector3(0,5,0);
             objetos[_currentObject].SetActive(true);
         }
     }

@@ -29,7 +29,9 @@ namespace KinectSimpleGesture
     {
         public GesturePartResult Update(Body skeleton)
         {
-            if (
+            if (                
+                skeleton.HandRightState == HandState.Open
+                &&
                 skeleton.Joints[JointType.HandTipRight].Position.X < skeleton.Joints[JointType.ElbowRight].Position.X 
                 &&
                 skeleton.Joints[JointType.HandTipRight].Position.Y > skeleton.Joints[JointType.ElbowRight].Position.Y
