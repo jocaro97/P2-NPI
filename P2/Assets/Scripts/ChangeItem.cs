@@ -26,6 +26,7 @@ public class ChangeItem : MonoBehaviour
             prev = false;
             objetos[_currentObject].SetActive(false);
             _currentObject = (_currentObject+1) % objetos.Length;
+            objetos[_currentObject].transform.position = new Vector3(0,5,0);
             objetos[_currentObject].SetActive(true);
         }
         if (next)
@@ -33,6 +34,7 @@ public class ChangeItem : MonoBehaviour
             next = false;
             objetos[_currentObject].SetActive(false);
             _currentObject = (objetos.Length + _currentObject-1) % objetos.Length;
+            objetos[_currentObject].transform.position = new Vector3(0,5,0);
             objetos[_currentObject].SetActive(true);
         }
     }
