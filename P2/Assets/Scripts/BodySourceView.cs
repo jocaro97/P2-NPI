@@ -66,6 +66,8 @@ public class BodySourceView : MonoBehaviour
         _ZoomOutGesture.GestureRecognized += ZoomOut_GestureRecognized;
         _RotateLeftGesture.GestureRecognized += RotateLeft_GestureRecognized;
         _RotateRightGesture.GestureRecognized += RotateRight_GestureRecognized;
+        _RotateUpGesture.GestureRecognized += RotateUp_GestureRecognized;
+        _RotateDownGesture.GestureRecognized += RotateDown_GestureRecognized;
     }
 
     void Update () 
@@ -124,12 +126,14 @@ public class BodySourceView : MonoBehaviour
             
             if(body.IsTracked)
             {
-                // _NextGesture.Update(body);
+                _NextGesture.Update(body);
                 // _ZoomInGesture.Update(body);
-                // _PrevGesture.Update(body);
-                _ZoomOutGesture.Update(body);
-                // _RotateLeftGesture.Update(body);
-                // _RotateRightGesture.Update(body);
+                _PrevGesture.Update(body);
+                // _ZoomOutGesture.Update(body);
+                _RotateLeftGesture.Update(body);
+                _RotateRightGesture.Update(body);
+                _RotateUpGesture.Update(body);
+                _RotateDownGesture.Update(body);
 
                 if(!_Bodies.ContainsKey(body.TrackingId))
                 {
@@ -247,13 +251,13 @@ public class BodySourceView : MonoBehaviour
     
     void RotateUp_GestureRecognized(object sender, EventArgs e)
     {
-        Debug.Log("Rotate Right gesture");
+        Debug.Log("Rotate Up gesture");
         _items[_currentItem].transform.Rotate(Vector3.right * 25 * Time.deltaTime, Space.World);
     }
 
     void RotateDown_GestureRecognized(object sender, EventArgs e)
     {
-        Debug.Log("Rotate Left Gesture");
+        Debug.Log("Rotate Down Gesture");
         _items[_currentItem].transform.Rotate(Vector3.left * 25 * Time.deltaTime, Space.World);
     }
 
