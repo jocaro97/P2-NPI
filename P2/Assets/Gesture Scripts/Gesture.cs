@@ -44,7 +44,15 @@ namespace KinectSimpleGesture
                 case "RotateRight":
                     this._motionController = true;
                     this._segments = new IGestureSegment[] {new RotateRightSegment1(), new RotateRightSegment2()};
-                    break;               
+                    break;      
+                case "RotateUp":
+                    this._motionController = true;
+                    this._segments = new IGestureSegment[] {new RotateUpSegment1(), new RotateUpSegment2()};
+                    break;
+                case "RotateDown":
+                    this._motionController = true;
+                    this._segments = new IGestureSegment[] {new RotateDownSegment1(), new RotateDownSegment2()};
+                    break;    
                 case "ZoomIn":
                     this._motionController = true;
                     this._segments = new IGestureSegment[] {new ZoomInSegment1(), new ZoomInSegment2()};

@@ -22,6 +22,9 @@ public class BodySourceView : MonoBehaviour
     private Gesture _ZoomOutGesture = new Gesture("ZoomOut");
     private Gesture _RotateLeftGesture = new Gesture("RotateLeft");
     private Gesture _RotateRightGesture = new Gesture("RotateRight");
+
+    private Gesture _RotateUpGesture = new Gesture("RotateUp");
+    private Gesture _RotateDownGesture = new Gesture("RotateDown");
     
     private Dictionary<Kinect.JointType, Kinect.JointType> _BoneMap = new Dictionary<Kinect.JointType, Kinect.JointType>()
     {
@@ -121,12 +124,12 @@ public class BodySourceView : MonoBehaviour
             
             if(body.IsTracked)
             {
-                _NextGesture.Update(body);
-                //_ZoomInGesture.Update(body);
-                _PrevGesture.Update(body);
-                //_ZoomOutGesture.Update(body);
-                _RotateLeftGesture.Update(body);
-                _RotateRightGesture.Update(body);
+                // _NextGesture.Update(body);
+                _ZoomInGesture.Update(body);
+                // _PrevGesture.Update(body);
+                _ZoomOutGesture.Update(body);
+                // _RotateLeftGesture.Update(body);
+                // _RotateRightGesture.Update(body);
 
                 if(!_Bodies.ContainsKey(body.TrackingId))
                 {
