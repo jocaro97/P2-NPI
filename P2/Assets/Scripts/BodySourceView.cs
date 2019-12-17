@@ -10,14 +10,18 @@ public class BodySourceView : MonoBehaviour
 {
     public Material BoneMaterial;
     public GameObject BodySourceManager;
-    public GameObject ChangeItemManager;
-    
+    public GameObject[] _items;
+    public int _currentItem = 0;
+
     private Dictionary<ulong, GameObject> _Bodies = new Dictionary<ulong, GameObject>();
     private BodySourceManager _BodyManager;
-    private static ChangeItem _ChangeItem;
 
     private Gesture _NextGesture = new Gesture("Next");
-    // private Gesture _ZoomInGesture = new Gesture("ZoomIn");
+    private Gesture _ZoomInGesture = new Gesture("ZoomIn");
+    private Gesture _PrevGesture = new Gesture("Prev");
+    private Gesture _ZoomOutGesture = new Gesture("ZoomOut");
+    private Gesture _RotateLeftGesture = new Gesture("RotateLeft");
+    private Gesture _RotateRightGesture = new Gesture("RotateRight");
     
     private Dictionary<Kinect.JointType, Kinect.JointType> _BoneMap = new Dictionary<Kinect.JointType, Kinect.JointType>()
     {
@@ -50,13 +54,15 @@ public class BodySourceView : MonoBehaviour
         { Kinect.JointType.SpineShoulder, Kinect.JointType.Neck },
         { Kinect.JointType.Neck, Kinect.JointType.Head },
     };
-  
-    void Start ()
+
+    void Start()
     {
-        _ChangeItem = ChangeItemManager.GetComponent<ChangeItem>();
-        
         _NextGesture.GestureRecognized += Next_GestureRecognized;
-        // _ZoomInGesture.GestureRecognized += Zoom_GestureRecognized;
+        _ZoomInGesture.GestureRecognized += ZoomIn_GestureRecognized;
+        _PrevGesture.GestureRecognized += Prev_GestureRecognized;
+        _ZoomOutGesture.GestureRecognized += ZoomOut_GestureRecognized;
+        _RotateLeftGesture.GestureRecognized += RotateLeft_GestureRecognized;
+        _RotateRightGesture.GestureRecognized += RotateRight_GestureRecognized;
     }
 
     void Update () 
@@ -67,6 +73,7 @@ public class BodySourceView : MonoBehaviour
         }
         
         _BodyManager = BodySourceManager.GetComponent<BodySourceManager>();
+
 
         if (_BodyManager == null)
         {
@@ -114,8 +121,13 @@ public class BodySourceView : MonoBehaviour
             
             if(body.IsTracked)
             {
-                _NextGesture.Update(body);
-                // _ZoomInGesture.Update(body);
+                //_NextGesture.Update(body);
+                _ZoomInGesture.Update(body);
+                //_PrevGesture.Update(body);
+                //_ZoomOutGesture.Update(body);
+                //_RotateLeftGesture.Update(body);
+                //_RotateRightGesture.Update(body);
+
                 if(!_Bodies.ContainsKey(body.TrackingId))
                 {
                     _Bodies[body.TrackingId] = CreateBodyObject(body.TrackingId);
@@ -201,11 +213,48 @@ public class BodySourceView : MonoBehaviour
     static void Next_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Next gesture");
-        _ChangeItem.next = true;
+        /*_items[_currentItem].SetActive(false);
+        _currentItem = (_currentItem + 1) % _items.Length;
+        _items[_currentItem].transform.position = new Vector3(0, 5, 0);
+        _items[_currentItem].SetActive(true); */
     }
 
-    static void Zoom_GestureRecognized(object sender, EventArgs e)
+    static void Prev_GestureRecognized(object sender, EventArgs e)
     {
-        Debug.Log("You just ZOOM THE OBJECT!");
+        Debug.Log("Prev Gesture");
+
+        /*
+        _items[_currentItem].SetActive(false);
+        _currentItem = (_items.Length + _currentItem - 1) % _items.Length;
+        _items[_currentItem].transform.position = new Vector3(0, 5, 0);
+        _items[_currentItem].SetActive(true);
+        */
+    }
+
+    static void RotateRight_GestureRecognized(object sender, EventArgs e)
+    {
+        Debug.Log("Rotate Right gesture");
+       // _items[_currentItem].transform.Rotate(Vector3.up * 25 * Time.deltaTime, Space.World);
+
+    }
+
+    static void RotateLeft_GestureRecognized(object sender, EventArgs e)
+    {
+        Debug.Log("Rotate Left Gesture");
+      //  _items[_currentItem].transform.Rotate(Vector3.down * 25 * Time.deltaTime, Space.World);
+
+    }
+
+    static void ZoomIn_GestureRecognized(object sender, EventArgs e)
+    {
+        Debug.Log("Zoom In Gesture");
+      //  _items[_currentItem].transform.Translate(0, 0, -1, Space.World);
+    }
+
+    static void ZoomOut_GestureRecognized(object sender, EventArgs e)
+    {
+        Debug.Log("Zoom Out Gesture");
+     //   _items[_currentItem].transform.Translate(0, 0, 1, Space.World);
+
     }
 }

@@ -29,27 +29,27 @@ namespace KinectSimpleGesture
             {
                 case "Next":
                     this._window_size = 20;
-                    _segments = new IGestureSegment[] { new NextSegment1(), new NextSegment2() , new NextSegment2(), new NextSegment2() , new NextSegment2(), new NextSegment2() , new NextSegment2()};
+                    this._segments = new IGestureSegment[] { new NextSegment1(), new NextSegment2() , new NextSegment3()};
                     break;
                 case "Prev":
                     this._window_size = 20;
-                    _segments = new IGestureSegment[] { new PrevSegment1(), new PrevSegment2() , new PrevSegment2(), new PrevSegment2() , new PrevSegment2(), new PrevSegment2() , new PrevSegment2()};
+                    this._segments = new IGestureSegment[] { new PrevSegment1(), new PrevSegment2() , new PrevSegment3()};
                     break;
                 case "RotateRight":
                     this._window_size = 40;
-                    _segments = new IGestureSegment[] {new RotateRightSegment1(), new RotateRightSegment2(), new RotateRightSegment3()};
+                    this._segments = new IGestureSegment[] {new RotateRightSegment1(), new RotateRightSegment2(), new RotateRightSegment3()};
                     break;
                 case "RotateLeft":
                     this._window_size = 40;
-                    _segments = new IGestureSegment[] {new RotateLeftSegment1(), new RotateLeftSegment2(), new RotateLeftSegment3()};
+                    this._segments = new IGestureSegment[] {new RotateLeftSegment1(), new RotateLeftSegment2(), new RotateLeftSegment3()};
                     break;               
                 case "ZoomIn":
-                    _window_size = 50;
-                    _segments = new IGestureSegment[] {new ZoomInSegment1(), new ZoomInSegment2()};
+                    this._window_size = 50;
+                    this._segments = new IGestureSegment[] {new ZoomInSegment1(), new ZoomInSegment2()};
                     break;
                 case "ZoomOut":
-                    _window_size = 50;
-                    _segments = new IGestureSegment[] {new ZoomOutSegment1(), new ZoomOutSegment2()};
+                    this._window_size = 50;
+                    this._segments = new IGestureSegment[] {new ZoomOutSegment1(), new ZoomOutSegment2()};
                     break;
             }
         }
