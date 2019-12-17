@@ -122,11 +122,11 @@ public class BodySourceView : MonoBehaviour
             if(body.IsTracked)
             {
                 //_NextGesture.Update(body);
-                _ZoomInGesture.Update(body);
+                //_ZoomInGesture.Update(body);
                 //_PrevGesture.Update(body);
                 //_ZoomOutGesture.Update(body);
-                //_RotateLeftGesture.Update(body);
-                //_RotateRightGesture.Update(body);
+                _RotateLeftGesture.Update(body);
+                _RotateRightGesture.Update(body);
 
                 if(!_Bodies.ContainsKey(body.TrackingId))
                 {
@@ -210,51 +210,50 @@ public class BodySourceView : MonoBehaviour
         return new Vector3(joint.Position.X * 10, joint.Position.Y * 10, joint.Position.Z * 10);
     }
 
-    static void Next_GestureRecognized(object sender, EventArgs e)
+    void Next_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Next gesture");
-        /*_items[_currentItem].SetActive(false);
+        _items[_currentItem].SetActive(false);
         _currentItem = (_currentItem + 1) % _items.Length;
         _items[_currentItem].transform.position = new Vector3(0, 5, 0);
-        _items[_currentItem].SetActive(true); */
+        _items[_currentItem].SetActive(true); 
     }
 
-    static void Prev_GestureRecognized(object sender, EventArgs e)
+    void Prev_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Prev Gesture");
 
-        /*
         _items[_currentItem].SetActive(false);
         _currentItem = (_items.Length + _currentItem - 1) % _items.Length;
         _items[_currentItem].transform.position = new Vector3(0, 5, 0);
         _items[_currentItem].SetActive(true);
-        */
+       
     }
 
-    static void RotateRight_GestureRecognized(object sender, EventArgs e)
+    void RotateRight_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Rotate Right gesture");
-       // _items[_currentItem].transform.Rotate(Vector3.up * 25 * Time.deltaTime, Space.World);
+        _items[_currentItem].transform.Rotate(Vector3.up * 25 * Time.deltaTime, Space.World);
 
     }
 
-    static void RotateLeft_GestureRecognized(object sender, EventArgs e)
+    void RotateLeft_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Rotate Left Gesture");
-      //  _items[_currentItem].transform.Rotate(Vector3.down * 25 * Time.deltaTime, Space.World);
+        _items[_currentItem].transform.Rotate(Vector3.down * 25 * Time.deltaTime, Space.World);
 
     }
 
-    static void ZoomIn_GestureRecognized(object sender, EventArgs e)
+    void ZoomIn_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Zoom In Gesture");
-      //  _items[_currentItem].transform.Translate(0, 0, -1, Space.World);
+        _items[_currentItem].transform.Translate(0, 0, -1, Space.World);
     }
 
-    static void ZoomOut_GestureRecognized(object sender, EventArgs e)
+    void ZoomOut_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Zoom Out Gesture");
-     //   _items[_currentItem].transform.Translate(0, 0, 1, Space.World);
+        _items[_currentItem].transform.Translate(0, 0, 1, Space.World);
 
     }
 }
