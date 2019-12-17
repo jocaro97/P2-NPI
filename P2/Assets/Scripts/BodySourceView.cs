@@ -241,17 +241,29 @@ public class BodySourceView : MonoBehaviour
         Debug.Log("Rotate Left Gesture");
         _items[_currentItem].transform.Rotate(Vector3.down * 25 * Time.deltaTime, Space.World);
     }
+    
+    void RotateUp_GestureRecognized(object sender, EventArgs e)
+    {
+        Debug.Log("Rotate Right gesture");
+        _items[_currentItem].transform.Rotate(Vector3.right * 25 * Time.deltaTime, Space.World);
+    }
+
+    void RotateDown_GestureRecognized(object sender, EventArgs e)
+    {
+        Debug.Log("Rotate Left Gesture");
+        _items[_currentItem].transform.Rotate(Vector3.left * 25 * Time.deltaTime, Space.World);
+    }
 
     void ZoomIn_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Zoom In Gesture");
-        _items[_currentItem].transform.Translate(0, 0, -1, Space.World);
+        _items[_currentItem].transform.Translate(Vector3.forward * Time.deltaTime, Space.World);
     }
 
     void ZoomOut_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Zoom Out Gesture");
-        _items[_currentItem].transform.Translate(0, 0, 1, Space.World);
-
+        _items[_currentItem].transform.Translate(Vector3.back * Time.deltaTime, Space.World);
     }
+
 }
