@@ -125,7 +125,7 @@ public class BodySourceView : MonoBehaviour
             if(body.IsTracked)
             {
                 // _NextGesture.Update(body);
-                _ZoomInGesture.Update(body);
+                // _ZoomInGesture.Update(body);
                 // _PrevGesture.Update(body);
                 _ZoomOutGesture.Update(body);
                 // _RotateLeftGesture.Update(body);

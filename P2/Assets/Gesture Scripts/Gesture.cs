@@ -59,7 +59,7 @@ namespace KinectSimpleGesture
                     break;               
                 case "ZoomOut":
                     this._motionController = true;
-                    this._segments = new IGestureSegment[] {new ZoomInSegment1(), new ZoomInSegment2()};
+                    this._segments = new IGestureSegment[] {new ZoomOutSegment1(), new ZoomOutSegment2()};
                     break;
             }
         }
