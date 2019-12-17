@@ -17,6 +17,10 @@ namespace KinectSimpleGesture
                 skeleton.Joints[JointType.HandLeft].Position.Z > skeleton.Joints[JointType.ElbowLeft].Position.Z - 0.2
                 &&
                 skeleton.Joints[JointType.HandLeft].Position.X >= skeleton.Joints[JointType.ElbowLeft].Position.X
+                &&
+                skeleton.Joints[JointType.HandRight].Position.Y > skeleton.Joints[JointType.SpineMid].Position.Y
+                &&
+                skeleton.Joints[JointType.HandLeft].Position.Y > skeleton.Joints[JointType.SpineMid].Position.y
                 )
             {
                 return GesturePartResult.Succeeded;
@@ -37,6 +41,10 @@ namespace KinectSimpleGesture
                 skeleton.Joints[JointType.HandLeft].Position.Z < skeleton.Joints[JointType.ElbowLeft].Position.Z - 0.2
                 &&
                 skeleton.Joints[JointType.HandLeft].Position.X >= skeleton.Joints[JointType.ElbowLeft].Position.X
+                &&
+                skeleton.Joints[JointType.HandRight].Position.Y > skeleton.Joints[JointType.SpineMid].Position.Y
+                &&
+                skeleton.Joints[JointType.HandLeft].Position.Y > skeleton.Joints[JointType.SpineMid].Position.y
                 )
             {
                 return GesturePartResult.Succeeded;

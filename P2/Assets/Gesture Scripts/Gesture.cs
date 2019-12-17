@@ -31,20 +31,24 @@ namespace KinectSimpleGesture
                     this._window_size = 20;
                     _segments = new IGestureSegment[] { new NextSegment1(), new NextSegment2() , new NextSegment2(), new NextSegment2() , new NextSegment2(), new NextSegment2() , new NextSegment2()};
                     break;
+                case "Prev":
+                    this._window_size = 20;
+                    _segments = new IGestureSegment[] { new PrevSegment1(), new PrevSegment2() , new PrevSegment2(), new PrevSegment2() , new PrevSegment2(), new PrevSegment2() , new PrevSegment2()};
+                    break;
                 case "RotateRight":
-                    _segments = new IGestureSegment[] {new RotateRightSegment1(), new RotateRightSegment2()};
+                    this._window_size = 40;
+                    _segments = new IGestureSegment[] {new RotateRightSegment1(), new RotateRightSegment2(), new RotateRightSegment3()};
                     break;
                 case "RotateLeft":
-                    _segments = new IGestureSegment[] {new RotateLeftSegment1(), new RotateLeftSegment2()};
-                    break;               
-                case "Prev":
-                    _segments = new IGestureSegment[] {new PrevSegment1(), new PrevSegment2()};
+                    this._window_size = 40;
+                    _segments = new IGestureSegment[] {new RotateLeftSegment1(), new RotateLeftSegment2(), new RotateLeftSegment3()};
                     break;               
                 case "ZoomIn":
                     _window_size = 50;
                     _segments = new IGestureSegment[] {new ZoomInSegment1(), new ZoomInSegment2()};
                     break;
                 case "ZoomOut":
+                    _window_size = 50;
                     _segments = new IGestureSegment[] {new ZoomOutSegment1(), new ZoomOutSegment2()};
                     break;
             }

@@ -4,15 +4,19 @@ using Windows.Kinect;
 
 namespace KinectSimpleGesture
 {
-  
     public class PrevSegment1 : IGestureSegment
     {
         public GesturePartResult Update(Body skeleton)
         {
             if (
-                skeleton.Joints[JointType.HandLeft].Position.X < skeleton.Joints[JointType.ElbowLeft].Position.X
+                skeleton.HandLeftState == HandState.Open
                 &&
-                skeleton.Joints[JointType.HandTipLeft].Position.Y > skeleton.Joints[JointType.ElbowLeft].Position.Y)
+                skeleton.Joints[JointType.HandTipLeft].Position.X < skeleton.Joints[JointType.ElbowLeft].Position.X
+                &&
+                skeleton.Joints[JointType.HandTipLeft].Position.Y > skeleton.Joints[JointType.ElbowLeft].Position.Y
+                &&
+                skeleton.Joints[JointType.HandTipRight].Position.Y < skeleton.Joints[JointType.SpineMid].Position.Y
+                )
             {
                 return GesturePartResult.Succeeded;
             }
@@ -25,9 +29,14 @@ namespace KinectSimpleGesture
         public GesturePartResult Update(Body skeleton)
         {
             if (
-                skeleton.Joints[JointType.HandLeft].Position.X > skeleton.Joints[JointType.ElbowLeft].Position.X
+                skeleton.HandLeftState == HandState.Open
                 &&
-                skeleton.Joints[JointType.HandTipLeft].Position.Y > skeleton.Joints[JointType.ElbowLeft].Position.Y)
+                skeleton.Joints[JointType.HandTipLeft].Position.X >= skeleton.Joints[JointType.ElbowLeft].Position.X
+                &&
+                skeleton.Joints[JointType.HandTipLeft].Position.Y > skeleton.Joints[JointType.ElbowLeft].Position.Y
+                &&
+                skeleton.Joints[JointType.HandTipRight].Position.Y < skeleton.Joints[JointType.SpineMid].Position.Y
+                )
             {
                 return GesturePartResult.Succeeded;
             }
