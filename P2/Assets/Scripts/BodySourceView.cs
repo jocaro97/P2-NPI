@@ -121,9 +121,9 @@ public class BodySourceView : MonoBehaviour
             
             if(body.IsTracked)
             {
-                //_NextGesture.Update(body);
+                _NextGesture.Update(body);
                 //_ZoomInGesture.Update(body);
-                //_PrevGesture.Update(body);
+                _PrevGesture.Update(body);
                 //_ZoomOutGesture.Update(body);
                 _RotateLeftGesture.Update(body);
                 _RotateRightGesture.Update(body);
@@ -234,14 +234,12 @@ public class BodySourceView : MonoBehaviour
     {
         Debug.Log("Rotate Right gesture");
         _items[_currentItem].transform.Rotate(Vector3.up * 25 * Time.deltaTime, Space.World);
-
     }
 
     void RotateLeft_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Rotate Left Gesture");
         _items[_currentItem].transform.Rotate(Vector3.down * 25 * Time.deltaTime, Space.World);
-
     }
 
     void ZoomIn_GestureRecognized(object sender, EventArgs e)

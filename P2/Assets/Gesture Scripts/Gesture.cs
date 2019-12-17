@@ -17,6 +17,8 @@ namespace KinectSimpleGesture
         IGestureSegment[] _segments;
         int _currentSegment = 0;
         int _frameCount = 0;
+
+        bool _motionController = false;
         string _type;
 
         public event EventHandler GestureRecognized;
@@ -35,21 +37,21 @@ namespace KinectSimpleGesture
                     this._window_size = 20;
                     this._segments = new IGestureSegment[] { new PrevSegment1(), new PrevSegment2() , new PrevSegment3()};
                     break;
-                case "RotateRight":
-                    this._window_size = 40;
-                    this._segments = new IGestureSegment[] {new RotateRightSegment1(), new RotateRightSegment2(), new RotateRightSegment3()};
-                    break;
                 case "RotateLeft":
-                    this._window_size = 40;
-                    this._segments = new IGestureSegment[] {new RotateLeftSegment1(), new RotateLeftSegment2(), new RotateLeftSegment3()};
+                    this._motionController = true;
+                    this._segments = new IGestureSegment[] {new RotateLeftSegment1(), new RotateLeftSegment2()};
+                    break;
+                case "RotateRight":
+                    this._motionController = true;
+                    this._segments = new IGestureSegment[] {new RotateRightSegment1(), new RotateRightSegment2()};
                     break;               
                 case "ZoomIn":
-                    this._window_size = 50;
+                    this._motionController = true;
                     this._segments = new IGestureSegment[] {new ZoomInSegment1(), new ZoomInSegment2()};
-                    break;
+                    break;               
                 case "ZoomOut":
-                    this._window_size = 50;
-                    this._segments = new IGestureSegment[] {new ZoomOutSegment1(), new ZoomOutSegment2()};
+                    this._motionController = true;
+                    this._segments = new IGestureSegment[] {new ZoomInSegment1(), new ZoomInSegment2()};
                     break;
             }
         }
@@ -59,36 +61,50 @@ namespace KinectSimpleGesture
             GesturePartResult result = _segments[_currentSegment].Update(skeleton);
 
             if (result == GesturePartResult.Succeeded)
-            {
+            {   
                 Debug.Log(_type + ": Segmento " + _currentSegment.ToString() + " reconocido");
-                if (_currentSegment + 1 < _segments.Length)
+                _currentSegment++;
+
+                if(_motionController)
                 {
-                    _currentSegment++;
-                    _frameCount = 0;
+                    if(_currentSegment == _segments.Length)
+                    {
+                        _currentSegment--;
+
+                        if (GestureRecognized != null)
+                        {
+                            GestureRecognized(this, new EventArgs());
+                        }
+                    }                    
                 }
                 else
                 {
-                    if (GestureRecognized != null)
+                    if (_currentSegment == _segments.Length)
+                    {                    
+                        if (GestureRecognized != null)
+                        {
+                            GestureRecognized(this, new EventArgs());
+                            Reset();
+                        }
+                    }
+                    else
                     {
-                        GestureRecognized(this, new EventArgs());
-                        Reset();
+                        _frameCount = 0;
                     }
                 }
             }
             else {
-                if (_frameCount == _window_size ||
-                    (_currentSegment > 0 && _segments[_currentSegment -1].Update(skeleton) != GesturePartResult.Succeeded))
-                    {
-                        Debug.Log(_type + ": Segmento " + _currentSegment.ToString() + " fallido.");
-
-                        Reset();
-                    }
+                Debug.Log(_type + ": Segmento " + _currentSegment.ToString() + " no reconocido");
+                if (_frameCount == _window_size || (_currentSegment > 0 && _segments[_currentSegment -1].Update(skeleton) != GesturePartResult.Succeeded))
+                {
+                    // Debug.Log(_type + ": Segmento " + _currentSegment.ToString() + " fallido.");
+                    Reset();
+                }
                 else
-                    {
-                        // Debug.Log(_type + ": Segmento " + _currentSegment.ToString() + " no reconocido, frame_count: " + _frameCount);
-
-                        _frameCount++;
-                    }
+                {
+                    // Debug.Log(_type + ": Segmento " + _currentSegment.ToString() + " no reconocido, frame_count: " + _frameCount);
+                    _frameCount++;
+                }
             } 
         }
 
