@@ -1,15 +1,22 @@
 fileFormatVersion: 2
-guid: 2fa6e91661b6e8344bd5fc1409407d19
+guid: 23218a05e9459f64191f9230ce96584d
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: minion_one_eye
     400000: //RootNode
-    400002: minion_one_eye
-    2100000: minion_one_eyeMat
-    2300000: minion_one_eye
-    3300000: minion_one_eye
+    2100000: tounge
+    2100002: teeth
+    2100004: lambert1
+    2100006: gloves
+    2100008: white_eye
+    2100010: outer_eye
+    2100012: Inner_eye
+    2100014: lambert6
+    2100016: lebas
+    2100018: gloves_u1_v1
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: minion_one_eye
     2186277476908879412: ImportLogs
   externalObjects: {}
