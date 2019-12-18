@@ -41,11 +41,11 @@ namespace KinectSimpleGesture
                 ((
                     skeleton.Joints[JointType.HandRight].Position.Y >= skeleton.Joints[JointType.ElbowRight].Position.Y
                     &&
-                    skeleton.Joints[JointType.HandLeft].Position.Y <= skeleton.Joints[JointType.ElbowLeft].Position.Y
+                    skeleton.Joints[JointType.HandLeft].Position.Y <= skeleton.Joints[JointType.SpineMid].Position.Y
                 ) 
                 ||
                 (
-                    skeleton.Joints[JointType.HandRight].Position.Y <= skeleton.Joints[JointType.ElbowRight].Position.Y
+                    skeleton.Joints[JointType.HandRight].Position.Y <= skeleton.Joints[JointType.SpineMid].Position.Y
                     &&
                     skeleton.Joints[JointType.HandLeft].Position.Y >= skeleton.Joints[JointType.ElbowLeft].Position.Y
                 )))
