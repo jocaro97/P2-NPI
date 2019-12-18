@@ -70,7 +70,7 @@ public class BodySourceView : MonoBehaviour
         _RotateDownGesture.GestureRecognized += RotateDown_GestureRecognized;
     }
 
-    void Update () 
+    void FixedUpdate () 
     {
         if (BodySourceManager == null)
         {
