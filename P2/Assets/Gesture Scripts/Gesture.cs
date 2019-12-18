@@ -70,7 +70,7 @@ namespace KinectSimpleGesture
 
             if (result == GesturePartResult.Succeeded)
             {   
-                // Debug.Log(_type + ": Segmento " + _currentSegment.ToString() + " reconocido");
+                Debug.Log(_type + ": Segmento " + _currentSegment.ToString() + " reconocido");
                 _currentSegment++;
 
                 if(_motionController)

@@ -126,14 +126,14 @@ public class BodySourceView : MonoBehaviour
             
             if(body.IsTracked)
             {
-                _NextGesture.Update(body);
-                // _ZoomInGesture.Update(body);
-                _PrevGesture.Update(body);
+                // _NextGesture.Update(body);
+                _ZoomInGesture.Update(body);
+                // _PrevGesture.Update(body);
                 // _ZoomOutGesture.Update(body);
-                _RotateLeftGesture.Update(body);
-                _RotateRightGesture.Update(body);
-                _RotateUpGesture.Update(body);
-                _RotateDownGesture.Update(body);
+                // _RotateLeftGesture.Update(body);
+                // _RotateRightGesture.Update(body);
+                // _RotateUpGesture.Update(body);
+                // _RotateDownGesture.Update(body);
 
                 if(!_Bodies.ContainsKey(body.TrackingId))
                 {
