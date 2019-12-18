@@ -126,14 +126,14 @@ public class BodySourceView : MonoBehaviour
             
             if(body.IsTracked)
             {
-                // _NextGesture.Update(body);
-                _ZoomInGesture.Update(body);
-                // _PrevGesture.Update(body);
-                // _ZoomOutGesture.Update(body);
-                // _RotateLeftGesture.Update(body);
-                // _RotateRightGesture.Update(body);
-                // _RotateUpGesture.Update(body);
-                // _RotateDownGesture.Update(body);
+                _NextGesture.Update(body);
+                _PrevGesture.Update(body);
+                //_ZoomInGesture.Update(body);
+                _ZoomOutGesture.Update(body);
+                _RotateLeftGesture.Update(body);
+                _RotateRightGesture.Update(body);
+                _RotateUpGesture.Update(body);
+                _RotateDownGesture.Update(body);
 
                 if(!_Bodies.ContainsKey(body.TrackingId))
                 {
@@ -223,6 +223,7 @@ public class BodySourceView : MonoBehaviour
         _items[_currentItem].SetActive(false);
         _currentItem = (_currentItem + 1) % _items.Length;
         _items[_currentItem].transform.position = new Vector3(0, 5, 0);
+        _items[_currentItem].transform.rotation = Quaternion.Euler(0,0,0);
         _items[_currentItem].SetActive(true); 
     }
 
@@ -233,6 +234,7 @@ public class BodySourceView : MonoBehaviour
         _items[_currentItem].SetActive(false);
         _currentItem = (_items.Length + _currentItem - 1) % _items.Length;
         _items[_currentItem].transform.position = new Vector3(0, 5, 0);
+        _items[_currentItem].transform.rotation = Quaternion.Euler(0,0,0);
         _items[_currentItem].SetActive(true);
        
     }
@@ -264,13 +266,13 @@ public class BodySourceView : MonoBehaviour
     void ZoomIn_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Zoom In Gesture");
-        _items[_currentItem].transform.Translate(Vector3.forward * Time.deltaTime, Space.World);
+        _items[_currentItem].transform.Translate(Vector3.back * Time.deltaTime, Space.World);
     }
 
     void ZoomOut_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Zoom Out Gesture");
-        _items[_currentItem].transform.Translate(Vector3.back * Time.deltaTime, Space.World);
+        _items[_currentItem].transform.Translate(Vector3.forward * Time.deltaTime, Space.World);
     }
 
 }

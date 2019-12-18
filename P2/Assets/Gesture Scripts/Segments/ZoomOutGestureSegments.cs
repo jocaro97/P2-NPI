@@ -22,9 +22,9 @@ namespace KinectSimpleGesture
                 &&
                 skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.Head].Position.Y
                 &&                 
-                skeleton.Joints[JointType.HandRight].Position.Z > skeleton.Joints[JointType.ShoulderRight].Position.Z - 0.1
+                skeleton.Joints[JointType.HandRight].Position.Z > skeleton.Joints[JointType.ShoulderRight].Position.Z - 0.3
                 &&
-                skeleton.Joints[JointType.HandLeft].Position.Z > skeleton.Joints[JointType.ShoulderLeft].Position.Z - 0.1
+                skeleton.Joints[JointType.HandLeft].Position.Z > skeleton.Joints[JointType.ShoulderLeft].Position.Z - 0.3
                 )
             {
                 return GesturePartResult.Succeeded;
@@ -38,9 +38,16 @@ namespace KinectSimpleGesture
         public GesturePartResult Update(Body skeleton)
         {
             if (
-                skeleton.Joints[JointType.HandRight].Position.Z <= skeleton.Joints[JointType.ShoulderRight].Position.Z - 0.1
+                (
+                skeleton.Joints[JointType.HandRight].Position.Z <= skeleton.Joints[JointType.ShoulderRight].Position.Z - 0.3
                 &&
-                skeleton.Joints[JointType.HandLeft].Position.Z <= skeleton.Joints[JointType.ShoulderLeft].Position.Z - 0.1
+                skeleton.Joints[JointType.HandLeft].Position.Z >= skeleton.Joints[JointType.ShoulderLeft].Position.Z - 0.3
+                )
+                ||
+                (
+                skeleton.Joints[JointType.HandRight].Position.Z >= skeleton.Joints[JointType.ShoulderRight].Position.Z - 0.3
+                &&
+                skeleton.Joints[JointType.HandLeft].Position.Z <= skeleton.Joints[JointType.ShoulderLeft].Position.Z - 0.3)
                 )
             {
                 return GesturePartResult.Succeeded;
