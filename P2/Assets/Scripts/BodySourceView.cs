@@ -128,7 +128,7 @@ public class BodySourceView : MonoBehaviour
             {
                 _NextGesture.Update(body);
                 _PrevGesture.Update(body);
-                //_ZoomInGesture.Update(body);
+                _ZoomInGesture.Update(body);
                 _ZoomOutGesture.Update(body);
                 _RotateLeftGesture.Update(body);
                 _RotateRightGesture.Update(body);
@@ -223,7 +223,7 @@ public class BodySourceView : MonoBehaviour
         _items[_currentItem].SetActive(false);
         _currentItem = (_currentItem + 1) % _items.Length;
         _items[_currentItem].transform.position = new Vector3(0, 5, 0);
-        _items[_currentItem].transform.rotation = Quaternion.Euler(0,0,0);
+        _items[_currentItem].transform.rotation = Quaternion.Euler(0,180,0);
         _items[_currentItem].SetActive(true); 
     }
 
@@ -234,7 +234,7 @@ public class BodySourceView : MonoBehaviour
         _items[_currentItem].SetActive(false);
         _currentItem = (_items.Length + _currentItem - 1) % _items.Length;
         _items[_currentItem].transform.position = new Vector3(0, 5, 0);
-        _items[_currentItem].transform.rotation = Quaternion.Euler(0,0,0);
+        _items[_currentItem].transform.rotation = Quaternion.Euler(0,180,0);
         _items[_currentItem].SetActive(true);
        
     }
