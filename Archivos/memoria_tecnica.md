@@ -16,14 +16,12 @@ Para ello implementamos un programa en el lenguaje de programación `C#` encarga
 
 La escena `Unity` nos permitirá interactuar con una serie de objetos presentes en la escena principal, que junto con la interfaz por gestos nos permitirá realizar diferentes transforaciones sobre la vista de los objetos como rotaciones o acercamientos.
 
-
 Estructura del proyecto
 =======================
 
 Como el objetivo de la práctica es la interfaz por gestos que se ha implementado, haremos especial incapié en aquellas partes de la implementación del proyecto.
 
 Podemos dividir este proyecto en las siguientes partes.
-
 
 - `Scene`. Escena de `Unity` que aloja los objetos que vamos a inspeccionar.
 - `BodySourceManager`.
@@ -44,7 +42,7 @@ En este archivo ...
 BodySourceView
 ==============
 
-En este archivo de reciben las actualizaciones del dispositivo Kinect. A cada gesto se le asocia una funcion `GestureEvent`que se ejecutará cuando se detecte cada uno de los gestos. 
+En este archivo de reciben las actualizaciones del dispositivo Kinect. A cada gesto se le asocia una funcion `GestureEvent`que se ejecutará cuando se detecte cada uno de los gestos.
 
 Gesture
 =======
@@ -58,43 +56,27 @@ Esta clase será la encargada de gestionar la transición entre cada uno de dich
 Estos se diferencian en cuando dan respuesta al resto de componentes del proyecto, un gesto discreto devuelve una "señal" cuando el gesto ha sido completado en su totalidad y luego se reinicia. Sin embargo, un gesto contínuo no se reinicia y continúa enviando la respuesta mientras nos encontremos en su etapa final.
 
 Los gestos que hemos implementado
-- ``Next`` y `Previous`. Gestos discretos que nos permiten navegar entre los distintos objetos que presentamos. 
+- ``Next`` y `Previous`. Gestos discretos que nos permiten navegar entre los distintos objetos que presentamos.
 - ``ZoomIn`` y ``ZoomOut``. Gestos continuos que nos permiten alejar o acercar el objeto que estamos viendo.
 - ``RotateLeft``, ``RotateRigth``, ``RotateUp`` y ``RotateDown``. Gestos continuos que nos permiten rotar el objeto que estamos viendo en las distintas direcciones.
 
 Cabe destacar que los gestos continuos se pueden fusionar, es decir, siempre que los movimientos sean compatibles, podemos ejecutar 2 de ellos a la vez, por ejemplo, acercar y rotar el objeto simultaneamente.
 
-
-
 Veamos cuales son estos gestos con los siguientes ejemplos que nuestros apuestos programadores han preparado.
 
-## Next
-![Next](next1.jpg)
-![Next](next2.jpg)
- 
-## Prev
-![Next](prev1.jpg)
-![Next](prev2.jpg)
- 
-## Rotate
-Partiendo de la siguiente posición inicial, podemos hacer las cuatro rotaciones.
-![Next](guille1.jpg)
-![Next](derecha.jpg)
-![Next](izquierda.jpg)
-![Next](arriba.jpg)
-![Next](abajo.jpg)
+| Next          || Prev                   | |
+| ------------- |-------------|------|------|
+| ![Next](next1.jpg){height=125px} |![Next](next2.jpg){height=125px} |![Next](prev1.jpg){height=125px} |![Next](prev2.jpg){height=125px} |
 
-## Zoom In
-![Next](zoomin1.jpg)
-![Next](zoomin2.jpg)
- 
-## Zoom Out
-![Next](zoomout1.jpg)
-![Next](zoomout2.jpg)
- 
-GestureSegment 
+| Rotate | | | | |
+| ------------- |-------------|------|------|---|
+| Origin | Right | Left | Up | Down|
+|![Next](guille1.jpg){height=100px} |![Next](derecha.jpg){height=100px} |![Next](izquierda.jpg){height=100px} |![Next](arriba.jpg){height=100px} |![Next](abajo.jpg){height=100px}|
+
+|Zoom In | |Zoom Out  | |
+| ------------- |-------------|------|------|
+|![Next](zoomin1.jpg){height=125px} |![Next](zoomin2.jpg){height=125px} |![Next](zoomout1.jpg){height=125px} |![Next](zoomout2.jpg){height=125px}|
+GestureSegment
 ===============
 
-Esta clase nos permite construir un segmento correspondiente a un gesto. Un objeto de esta clase debe tener implementado la función `update`, que será la encargada de indicar si dado un esqueleto detectado por el `Kinect` cumple una serie de restricciones. 
-
-
+Esta clase nos permite construir un segmento correspondiente a un gesto. Un objeto de esta clase debe tener implementado la función `update`, que será la encargada de indicar si dado un esqueleto detectado por el `Kinect` cumple una serie de restricciones.
