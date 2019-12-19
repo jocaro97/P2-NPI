@@ -12,7 +12,8 @@ public class BodySourceView : MonoBehaviour
     public GameObject BodySourceManager;
     public GameObject[] _items;
     public int _currentItem = 0;
-    private List<Transform> _originalStates = new List<Transform>();
+    private List<Vector3> _originalPositions = new List<Vector3>();
+    private List<Quaternion> _originalRotations = new List<Quaternion>();
 
     private Dictionary<ulong, GameObject> _Bodies = new Dictionary<ulong, GameObject>();
     private BodySourceManager _BodyManager;
@@ -72,7 +73,8 @@ public class BodySourceView : MonoBehaviour
 
         foreach (var it in _items)
         {
-            _originalStates.Add(it.transform);
+            _originalPositions.Add(it.transform.position);
+            _originalRotations.Add(it.transform.rotation);
         }
     }
 
@@ -228,8 +230,8 @@ public class BodySourceView : MonoBehaviour
         Debug.Log("Next gesture");
         _items[_currentItem].SetActive(false);
         _currentItem = (_currentItem + 1) % _items.Length;
-        _items[_currentItem].transform.position = _originalStates[_currentItem].position;
-        _items[_currentItem].transform.rotation = _originalStates[_currentItem].rotation;
+        _items[_currentItem].transform.position = _originalPositions[_currentItem];
+        _items[_currentItem].transform.rotation = _originalRotations[_currentItem];
         _items[_currentItem].SetActive(true); 
     }
 
@@ -239,8 +241,8 @@ public class BodySourceView : MonoBehaviour
 
         _items[_currentItem].SetActive(false);
         _currentItem = (_items.Length + _currentItem - 1) % _items.Length;
-        _items[_currentItem].transform.position = _originalStates[_currentItem].position;
-        _items[_currentItem].transform.rotation = _originalStates[_currentItem].rotation;
+        _items[_currentItem].transform.position = _originalPositions[_currentItem];
+        _items[_currentItem].transform.rotation = _originalRotations[_currentItem];
         _items[_currentItem].SetActive(true);
        
     }

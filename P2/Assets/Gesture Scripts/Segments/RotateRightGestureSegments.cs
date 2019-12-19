@@ -8,7 +8,10 @@ namespace KinectSimpleGesture
     {
         public GesturePartResult Update(Body skeleton)
         {
-            if (
+            if (                skeleton.HandRightState != HandState.Closed
+                &&
+                skeleton.HandLeftState != HandState.Closed
+                &&
                 skeleton.Joints[JointType.HandRight].Position.X <= skeleton.Joints[JointType.ElbowRight].Position.X 
                 &&
                 skeleton.Joints[JointType.HandLeft].Position.X >= skeleton.Joints[JointType.ElbowLeft].Position.X 
@@ -32,7 +35,10 @@ namespace KinectSimpleGesture
     {
         public GesturePartResult Update(Body skeleton)
         {
-            if (
+            if (                skeleton.HandRightState != HandState.Closed
+                &&
+                skeleton.HandLeftState != HandState.Closed
+                &&
                 skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.ElbowRight].Position.X 
                 &&
                 skeleton.Joints[JointType.HandLeft].Position.X > skeleton.Joints[JointType.ElbowLeft].Position.X 
