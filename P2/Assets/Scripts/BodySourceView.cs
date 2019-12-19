@@ -12,6 +12,7 @@ public class BodySourceView : MonoBehaviour
     public GameObject BodySourceManager;
     public GameObject[] _items;
     public int _currentItem = 0;
+    private List<Transform> _originalStates = new List<Transform>();
 
     private Dictionary<ulong, GameObject> _Bodies = new Dictionary<ulong, GameObject>();
     private BodySourceManager _BodyManager;
@@ -68,6 +69,11 @@ public class BodySourceView : MonoBehaviour
         _RotateRightGesture.GestureRecognized += RotateRight_GestureRecognized;
         _RotateUpGesture.GestureRecognized += RotateUp_GestureRecognized;
         _RotateDownGesture.GestureRecognized += RotateDown_GestureRecognized;
+
+        foreach (var it in _items)
+        {
+            _originalStates.Add(it.transform);
+        }
     }
 
     void FixedUpdate () 
@@ -222,8 +228,8 @@ public class BodySourceView : MonoBehaviour
         Debug.Log("Next gesture");
         _items[_currentItem].SetActive(false);
         _currentItem = (_currentItem + 1) % _items.Length;
-        _items[_currentItem].transform.position = new Vector3(0, 5, 0);
-        _items[_currentItem].transform.rotation = Quaternion.Euler(0,180,0);
+        _items[_currentItem].transform.position = _originalStates[_currentItem].position;
+        _items[_currentItem].transform.rotation = _originalStates[_currentItem].rotation;
         _items[_currentItem].SetActive(true); 
     }
 
@@ -233,8 +239,8 @@ public class BodySourceView : MonoBehaviour
 
         _items[_currentItem].SetActive(false);
         _currentItem = (_items.Length + _currentItem - 1) % _items.Length;
-        _items[_currentItem].transform.position = new Vector3(0, 5, 0);
-        _items[_currentItem].transform.rotation = Quaternion.Euler(0,180,0);
+        _items[_currentItem].transform.position = _originalStates[_currentItem].position;
+        _items[_currentItem].transform.rotation = _originalStates[_currentItem].rotation;
         _items[_currentItem].SetActive(true);
        
     }
