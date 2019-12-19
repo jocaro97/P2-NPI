@@ -44,6 +44,11 @@ BodySourceView
 
 En este archivo de reciben las actualizaciones del dispositivo Kinect. A cada gesto se le asocia una funcion `GestureEvent`que se ejecutará cuando se detecte cada uno de los gestos.
 
+GestureSegment
+===============
+
+Esta clase nos permite construir un segmento correspondiente a un gesto. Un objeto de esta clase debe tener implementado la función `update`, que será la encargada de indicar si dado un esqueleto detectado por el `Kinect` cumple una serie de restricciones.
+
 Gesture
 =======
 
@@ -62,6 +67,13 @@ Los gestos que hemos implementado
 
 Cabe destacar que los gestos continuos se pueden fusionar, es decir, siempre que los movimientos sean compatibles, podemos ejecutar 2 de ellos a la vez, por ejemplo, acercar y rotar el objeto simultaneamente.
 
+Para gestionar todo lo referente a los distintos gestos, el constructor de la clase nos obliga a pasarle un `string` indicando que gesto queremos inicializar, con esto la propia clase se encarga de seleccionar los segmentos que le corresponden.
+
+La clase implementa una función `update` que es llamada en cada frame de `Unity`, suya finalidad es gestionar si se esta cumpliendo el siguiente segmento del gesto.
+Para realizar el mismo tenemos una "ventana" de tiempo entre los diferentes segmentos, de forma que si la excedemos el gesto se resetea y sería necesario volver al segmento inicial del mismo.
+
+Cada objeto de la clase tiene un miembro `EventHandler` que nos permite añadirle funciones con sus respectivos argumentos, de forma que la clase `BodyView` añade las funciones que afectan a la escena `Unity` al miembro del gesto correspondiente.
+
 Veamos cuales son estos gestos con los siguientes ejemplos que nuestros apuestos programadores han preparado.
 
 | Next          || Prev                   | |
@@ -76,7 +88,3 @@ Veamos cuales son estos gestos con los siguientes ejemplos que nuestros apuestos
 |Zoom In | |Zoom Out  | |
 | ------------- |-------------|------|------|
 |![Next](zoomin1.jpg){height=125px} |![Next](zoomin2.jpg){height=125px} |![Next](zoomout1.jpg){height=125px} |![Next](zoomout2.jpg){height=125px}|
-GestureSegment
-===============
-
-Esta clase nos permite construir un segmento correspondiente a un gesto. Un objeto de esta clase debe tener implementado la función `update`, que será la encargada de indicar si dado un esqueleto detectado por el `Kinect` cumple una serie de restricciones.
