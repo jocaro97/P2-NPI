@@ -62,7 +62,7 @@ BodySourceView
 Esta es la clase principal y es la encargada de, utilizando los datos
 del kinect, y los gestos definidos en la clase Gesture, aplicar los
 cambios en la escena. Para conseguir los datos del kinect, hay definido
-un atributo de tipo GameObject inicializado al BodySourceManager.
+un atributo de tipo GameObject inicializado al objeto vacío que contendrá la instancia del BodySourceManager.
 
 En primer lugar, se definen los siguientes atributos:
 
@@ -72,6 +72,7 @@ manipular en la escena.
 de cada uno de los objetos anteriores.
 - Un objeto Gesture asociado a
 cada gesto, correctamiendo inicializado.
+- Un atributo de tipo BodySourceManager, del que obtenedre
 
 Ahora, al iniciar la escena, se asigna a cada gesto la función
 correspondiente que será la que indique la actualización a realizar en
@@ -82,6 +83,12 @@ Las funciones asignadas a los gestos Next y Prev permiten ciclar sobre
 todos los elementos. Estas ocultan el objeto actual, restablecen la
 posición del siguiente objeto a mostrar (en uno u otro sentido
 dependiendo del gesto), y lo hacen visible.
+
+Las asignadas a cada gesto de rotación respectivamente, que modifican la componente rotation del respectivo objeto rotándolo respecto del eje y la dirección adecuados.
+
+Por último, las asignadas a los gestos de ZoomIn y ZoomOut, que acercan o alejan el objeto de la cámara en un rango predefinido.
+
+Dicho esto, únicamente nos falta comentar la función FixedUpdate(), que es la encargada comunicar los datos obtenidos por el BodySourceManager con cada uno de los gestos definidos. Para ello, esta recoge los datos del atributo BodySourceManager, asignando al atributo respectivo la instancia almacenada en el objeto de unity con el método GetComponent. Ahora, almacena el Body, y llama al método update de cada uno de nuestros gestos pasándoles como argumento dicho objeto.
 
 GestureSegment
 ==============
