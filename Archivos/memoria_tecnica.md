@@ -1,3 +1,12 @@
+---
+title: Memoria técnica
+subtitle: Práctica 2
+author:
+- Luis Antonio Ortega Andrés
+- Guillermo Galindo Ortuño
+- Johanna Capote Robayna
+---
+
 Introducción
 ============
 
@@ -12,15 +21,14 @@ especializado del `Kinect`.
 
 La escena `Unity` nos permitirá interactuar con una serie de objetos
 presentes en la escena principal, que junto con la interfaz por gestos
-nos permitirá realizar diferentes transforaciones sobre la vista de los
+nos permitirá realizar diferentes transformaciones sobre la vista de los
 objetos como rotaciones o acercamientos.
 
 Estructura del proyecto
 =======================
 
 Como el objetivo de la práctica es la interfaz por gestos que se ha
-implementado, haremos especial incapié en aquellas partes de la
-implementación del proyecto.
+implementado, haremos especial hincapié en aquellas partes enfocadas en esta tarea, únicamente mencionando brevemente la parte de correspondiente a Unity.
 
 Podemos dividir este proyecto en las siguientes partes.
 
@@ -38,7 +46,7 @@ Escena de Unity
 La escena principal consta de 6 paredes que forman una cámara en cuyo
 centro se mostrará cada uno de los cinco objetos manipulables. Estos
 objetos se encuentran declarados en un array de `GameObject` llamado
-`Item`. Además de la camara principal `MainCamera` también se declaran
+`Item`. Además de la cámara principal `MainCamera` también se declaran
 un objeto de tipo `ligth` que ilumina la cámara.
 
 BodySourceManager
@@ -48,7 +56,7 @@ Este archivo es el encargado de realizar la conexión con el Kinect,
 recibir los datos del Kinect, almacenarlos para su posterior uso, y
 cerrar la conexión al cerrar la aplicación.
 
-Por ello, al comenzar la escena se abre la conexión con el kinect. Una
+Por ello, al comenzar la escena se abre la conexión con el Kinect. Una
 vez abierta, cada vez que se actualice la escena, obtiene el último
 frame tomado por el sensor, y almacena el `Body` asociado en un
 atributo.
@@ -60,8 +68,8 @@ BodySourceView
 ==============
 
 Esta es la clase principal y es la encargada de, utilizando los datos
-del kinect, y los gestos definidos en la clase `Gesture`, aplicar los
-cambios en la escena. Para conseguir los datos del kinect, hay definido
+del Kinect, y los gestos definidos en la clase `Gesture`, aplicar los
+cambios en la escena. Para conseguir los datos del Kinect, hay definido
 un atributo de tipo `GameObject ` inicializado al objeto vacío que contendrá la instancia del `BodySourceManager`.
 
 En primer lugar, se definen los siguientes atributos:
@@ -71,8 +79,8 @@ manipular en la escena.
 - Dos listas para almecenar la posición inicial
 de cada uno de los objetos anteriores.
 - Un objeto `Gesture` asociado a
-cada gesto, correctamiendo inicializado.
-- Un atributo de tipo `BodySourceManager`, del que obtenedre
+cada gesto, correctamente inicializado.
+- Un atributo de tipo `BodySourceManager`, que proporcionará los datos del sensor.
 
 Ahora, al iniciar la escena, se asigna a cada gesto la función
 correspondiente que será la que indique la actualización a realizar en
@@ -84,7 +92,7 @@ todos los elementos. Estas ocultan el objeto actual, restablecen la
 posición del siguiente objeto a mostrar (en uno u otro sentido
 dependiendo del gesto), y lo hacen visible.
 
-Las asignadas a cada gesto de rotación respectivamente, que modifican la componente rotation del respectivo objeto rotándolo respecto del eje y la dirección adecuados.
+Las asignadas a cada gesto de rotación, que modifican la componente `rotation` del respectivo objeto rotándolo respecto del eje y la dirección adecuados.
 
 Por último, las asignadas a los gestos de *ZoomIn* y *ZoomOut*, que acercan o alejan el objeto de la cámara en un rango predefinido.
 
@@ -102,7 +110,7 @@ Gesture
 =======
 
 Esta clase es la encargada de construir cada uno de los gestos que
-utilizamos en la práctica ademas de gestionar y comunicar al resto de
+utilizamos en la práctica además de gestionar y comunicar al resto de
 estructuras cuando un gesto está siendo ejecutado.
 
 Un gesto está compuesto de un array de `GestureSegments` que
@@ -120,25 +128,28 @@ completado en su totalidad y luego se reinicia. Sin embargo, un gesto
 contínuo no se reinicia y continúa enviando la respuesta mientras nos
 encontremos en su etapa final.
 
-Los gestos que hemos implementado - `Next` y `Previous`. Gestos
+Los gestos que hemos implementado
+
+- `Next` y `Previous`. Gestos
 discretos que nos permiten navegar entre los distintos objetos que
-presentamos. - `ZoomIn` y `ZoomOut`. Gestos continuos que nos permiten
-alejar o acercar el objeto que estamos viendo. - `RotateLeft`,
-`RotateRigth`, `RotateUp` y `RotateDown`. Gestos continuos que nos
+presentamos.
+- `ZoomIn` y `ZoomOut`. Gestos continuos que nos permiten
+alejar o acercar el objeto que estamos viendo.
+- `RotateLeft`, `RotateRigth`, `RotateUp` y `RotateDown`. Gestos continuos que nos
 permiten rotar el objeto que estamos viendo en las distintas
 direcciones.
 
 Cabe destacar que los gestos continuos se pueden fusionar, es decir,
 siempre que los movimientos sean compatibles, podemos ejecutar 2 de
-ellos a la vez, por ejemplo, acercar y rotar el objeto simultaneamente.
+ellos a la vez, por ejemplo, acercar y rotar el objeto simultáneamente.
 
 Para gestionar todo lo referente a los distintos gestos, el constructor
-de la clase nos obliga a pasarle un `string` indicando que gesto
+de la clase nos obliga a pasarle un `string` indicando qué gesto
 queremos inicializar, con esto la propia clase se encarga de seleccionar
 los segmentos que le corresponden.
 
 La clase implementa una función `update` que es llamada en cada frame de
-`Unity`, suya finalidad es gestionar si se esta cumpliendo el siguiente
+`Unity`, cuya finalidad es gestionar si se está cumpliendo el siguiente
 segmento del gesto. Para realizar el mismo tenemos una "ventana" de
 tiempo entre los diferentes segmentos, de forma que si la excedemos el
 gesto se resetea y sería necesario volver al segmento inicial del mismo.
@@ -148,7 +159,7 @@ añadirle funciones con sus respectivos argumentos, de forma que la clase
 `BodyView` añade las funciones que afectan a la escena `Unity` al
 miembro del gesto correspondiente.
 
-Veamos cuales son estos gestos con los siguientes ejemplos que nuestros
+Veamos cuáles son estos gestos con los siguientes ejemplos que nuestros
 apuestos programadores han preparado.
 
   Next                                                                      Prev
