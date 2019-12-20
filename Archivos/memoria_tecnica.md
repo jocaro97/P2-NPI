@@ -50,7 +50,7 @@ cerrar la conexión al cerrar la aplicación.
 
 Por ello, al comenzar la escena se abre la conexión con el kinect. Una
 vez abierta, cada vez que se actualice la escena, obtiene el último
-frame tomado por el sensor, y almacena el *Body* asociado en un
+frame tomado por el sensor, y almacena el `Body` asociado en un
 atributo.
 
 El script estará asociado a un objeto vacío de la escena, lo que permite
@@ -60,35 +60,35 @@ BodySourceView
 ==============
 
 Esta es la clase principal y es la encargada de, utilizando los datos
-del kinect, y los gestos definidos en la clase Gesture, aplicar los
+del kinect, y los gestos definidos en la clase `Gesture`, aplicar los
 cambios en la escena. Para conseguir los datos del kinect, hay definido
-un atributo de tipo GameObject inicializado al objeto vacío que contendrá la instancia del BodySourceManager.
+un atributo de tipo `GameObject ` inicializado al objeto vacío que contendrá la instancia del `BodySourceManager`.
 
 En primer lugar, se definen los siguientes atributos:
 
-- Un array de GameObject que contiene cada uno de los objetos a
+- Un array de `GameObject` que contiene cada uno de los objetos a
 manipular en la escena.
 - Dos listas para almecenar la posición inicial
 de cada uno de los objetos anteriores.
-- Un objeto Gesture asociado a
+- Un objeto `Gesture` asociado a
 cada gesto, correctamiendo inicializado.
-- Un atributo de tipo BodySourceManager, del que obtenedre
+- Un atributo de tipo `BodySourceManager`, del que obtenedre
 
 Ahora, al iniciar la escena, se asigna a cada gesto la función
 correspondiente que será la que indique la actualización a realizar en
 la escena al detectar el gesto. Vamos a explicar brevemente el contenido
 de cada uno de estas funciones.
 
-Las funciones asignadas a los gestos Next y Prev permiten ciclar sobre
+Las funciones asignadas a los gestos *Next* y *Prev* permiten ciclar sobre
 todos los elementos. Estas ocultan el objeto actual, restablecen la
 posición del siguiente objeto a mostrar (en uno u otro sentido
 dependiendo del gesto), y lo hacen visible.
 
 Las asignadas a cada gesto de rotación respectivamente, que modifican la componente rotation del respectivo objeto rotándolo respecto del eje y la dirección adecuados.
 
-Por último, las asignadas a los gestos de ZoomIn y ZoomOut, que acercan o alejan el objeto de la cámara en un rango predefinido.
+Por último, las asignadas a los gestos de *ZoomIn* y *ZoomOut*, que acercan o alejan el objeto de la cámara en un rango predefinido.
 
-Dicho esto, únicamente nos falta comentar la función FixedUpdate(), que es la encargada comunicar los datos obtenidos por el BodySourceManager con cada uno de los gestos definidos. Para ello, esta recoge los datos del atributo BodySourceManager, asignando al atributo respectivo la instancia almacenada en el objeto de unity con el método GetComponent. Ahora, almacena el Body, y llama al método update de cada uno de nuestros gestos pasándoles como argumento dicho objeto.
+Dicho esto, únicamente nos falta comentar la función `FixedUpdate()`, que es la encargada comunicar los datos obtenidos por el `BodySourceManager` con cada uno de los gestos definidos. Para ello, esta recoge los datos del atributo `BodySourceManager`, asignando al atributo respectivo la instancia almacenada en el objeto de unity con el método `GetComponent`. Ahora, almacena el `Body`, y llama al método update de cada uno de nuestros gestos pasándoles como argumento dicho objeto.
 
 GestureSegment
 ==============
