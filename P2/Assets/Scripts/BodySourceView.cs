@@ -24,7 +24,6 @@ public class BodySourceView : MonoBehaviour
     private Gesture _ZoomOutGesture = new Gesture("ZoomOut");
     private Gesture _RotateLeftGesture = new Gesture("RotateLeft");
     private Gesture _RotateRightGesture = new Gesture("RotateRight");
-
     private Gesture _RotateUpGesture = new Gesture("RotateUp");
     private Gesture _RotateDownGesture = new Gesture("RotateDown");
     
@@ -250,13 +249,13 @@ public class BodySourceView : MonoBehaviour
     void RotateRight_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Rotate Right gesture");
-        _items[_currentItem].transform.Rotate(Vector3.up * 25 * Time.deltaTime, Space.World);
+        _items[_currentItem].transform.Rotate(Vector3.down * 25 * Time.deltaTime, Space.World);
     }
 
     void RotateLeft_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Rotate Left Gesture");
-        _items[_currentItem].transform.Rotate(Vector3.down * 25 * Time.deltaTime, Space.World);
+        _items[_currentItem].transform.Rotate(Vector3.up * 25 * Time.deltaTime, Space.World);
     }
     
     void RotateUp_GestureRecognized(object sender, EventArgs e)
