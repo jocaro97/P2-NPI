@@ -15,7 +15,7 @@ public class BodySourceView : MonoBehaviour
     private List<Vector3> _originalPositions = new List<Vector3>();
     private List<Quaternion> _originalRotations = new List<Quaternion>();
 
-    private Dictionary<ulong, GameObject> _Bodies = new Dictionary<ulong, GameObject>();
+    // private Dictionary<ulong, GameObject> _Bodies = new Dictionary<ulong, GameObject>();
     private BodySourceManager _BodyManager;
 
     private Gesture _NextGesture = new Gesture("Next");
@@ -24,41 +24,40 @@ public class BodySourceView : MonoBehaviour
     private Gesture _ZoomOutGesture = new Gesture("ZoomOut");
     private Gesture _RotateLeftGesture = new Gesture("RotateLeft");
     private Gesture _RotateRightGesture = new Gesture("RotateRight");
-
     private Gesture _RotateUpGesture = new Gesture("RotateUp");
     private Gesture _RotateDownGesture = new Gesture("RotateDown");
     
-    private Dictionary<Kinect.JointType, Kinect.JointType> _BoneMap = new Dictionary<Kinect.JointType, Kinect.JointType>()
-    {
-        { Kinect.JointType.FootLeft, Kinect.JointType.AnkleLeft },
-        { Kinect.JointType.AnkleLeft, Kinect.JointType.KneeLeft },
-        { Kinect.JointType.KneeLeft, Kinect.JointType.HipLeft },
-        { Kinect.JointType.HipLeft, Kinect.JointType.SpineBase },
+    // private Dictionary<Kinect.JointType, Kinect.JointType> _BoneMap = new Dictionary<Kinect.JointType, Kinect.JointType>()
+    // {
+    //     { Kinect.JointType.FootLeft, Kinect.JointType.AnkleLeft },
+    //     { Kinect.JointType.AnkleLeft, Kinect.JointType.KneeLeft },
+    //     { Kinect.JointType.KneeLeft, Kinect.JointType.HipLeft },
+    //     { Kinect.JointType.HipLeft, Kinect.JointType.SpineBase },
         
-        { Kinect.JointType.FootRight, Kinect.JointType.AnkleRight },
-        { Kinect.JointType.AnkleRight, Kinect.JointType.KneeRight },
-        { Kinect.JointType.KneeRight, Kinect.JointType.HipRight },
-        { Kinect.JointType.HipRight, Kinect.JointType.SpineBase },
+    //     { Kinect.JointType.FootRight, Kinect.JointType.AnkleRight },
+    //     { Kinect.JointType.AnkleRight, Kinect.JointType.KneeRight },
+    //     { Kinect.JointType.KneeRight, Kinect.JointType.HipRight },
+    //     { Kinect.JointType.HipRight, Kinect.JointType.SpineBase },
         
-        { Kinect.JointType.HandTipLeft, Kinect.JointType.HandLeft },
-        { Kinect.JointType.ThumbLeft, Kinect.JointType.HandLeft },
-        { Kinect.JointType.HandLeft, Kinect.JointType.WristLeft },
-        { Kinect.JointType.WristLeft, Kinect.JointType.ElbowLeft },
-        { Kinect.JointType.ElbowLeft, Kinect.JointType.ShoulderLeft },
-        { Kinect.JointType.ShoulderLeft, Kinect.JointType.SpineShoulder },
+    //     { Kinect.JointType.HandTipLeft, Kinect.JointType.HandLeft },
+    //     { Kinect.JointType.ThumbLeft, Kinect.JointType.HandLeft },
+    //     { Kinect.JointType.HandLeft, Kinect.JointType.WristLeft },
+    //     { Kinect.JointType.WristLeft, Kinect.JointType.ElbowLeft },
+    //     { Kinect.JointType.ElbowLeft, Kinect.JointType.ShoulderLeft },
+    //     { Kinect.JointType.ShoulderLeft, Kinect.JointType.SpineShoulder },
         
-        { Kinect.JointType.HandTipRight, Kinect.JointType.HandRight },
-        { Kinect.JointType.ThumbRight, Kinect.JointType.HandRight },
-        { Kinect.JointType.HandRight, Kinect.JointType.WristRight },
-        { Kinect.JointType.WristRight, Kinect.JointType.ElbowRight },
-        { Kinect.JointType.ElbowRight, Kinect.JointType.ShoulderRight },
-        { Kinect.JointType.ShoulderRight, Kinect.JointType.SpineShoulder },
+    //     { Kinect.JointType.HandTipRight, Kinect.JointType.HandRight },
+    //     { Kinect.JointType.ThumbRight, Kinect.JointType.HandRight },
+    //     { Kinect.JointType.HandRight, Kinect.JointType.WristRight },
+    //     { Kinect.JointType.WristRight, Kinect.JointType.ElbowRight },
+    //     { Kinect.JointType.ElbowRight, Kinect.JointType.ShoulderRight },
+    //     { Kinect.JointType.ShoulderRight, Kinect.JointType.SpineShoulder },
         
-        { Kinect.JointType.SpineBase, Kinect.JointType.SpineMid },
-        { Kinect.JointType.SpineMid, Kinect.JointType.SpineShoulder },
-        { Kinect.JointType.SpineShoulder, Kinect.JointType.Neck },
-        { Kinect.JointType.Neck, Kinect.JointType.Head },
-    };
+    //     { Kinect.JointType.SpineBase, Kinect.JointType.SpineMid },
+    //     { Kinect.JointType.SpineMid, Kinect.JointType.SpineShoulder },
+    //     { Kinect.JointType.SpineShoulder, Kinect.JointType.Neck },
+    //     { Kinect.JointType.Neck, Kinect.JointType.Head },
+    // };
 
     void Start()
     {
@@ -250,13 +249,13 @@ public class BodySourceView : MonoBehaviour
     void RotateRight_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Rotate Right gesture");
-        _items[_currentItem].transform.Rotate(Vector3.up * 25 * Time.deltaTime, Space.World);
+        _items[_currentItem].transform.Rotate(Vector3.down * 25 * Time.deltaTime, Space.World);
     }
 
     void RotateLeft_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Rotate Left Gesture");
-        _items[_currentItem].transform.Rotate(Vector3.down * 25 * Time.deltaTime, Space.World);
+        _items[_currentItem].transform.Rotate(Vector3.up * 25 * Time.deltaTime, Space.World);
     }
     
     void RotateUp_GestureRecognized(object sender, EventArgs e)
@@ -274,13 +273,15 @@ public class BodySourceView : MonoBehaviour
     void ZoomIn_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Zoom In Gesture");
-        _items[_currentItem].transform.Translate(Vector3.back * Time.deltaTime, Space.World);
+        if (_items[_currentItem].transform.position.z >= -7)
+            _items[_currentItem].transform.Translate(Vector3.back * Time.deltaTime, Space.World);
     }
 
     void ZoomOut_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Zoom Out Gesture");
-        _items[_currentItem].transform.Translate(Vector3.forward * Time.deltaTime, Space.World);
+        if (_items[_currentItem].transform.position.z <= 10)
+            _items[_currentItem].transform.Translate(Vector3.forward * Time.deltaTime, Space.World);
     }
 
 }
