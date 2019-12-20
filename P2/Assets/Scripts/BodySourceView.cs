@@ -273,13 +273,15 @@ public class BodySourceView : MonoBehaviour
     void ZoomIn_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Zoom In Gesture");
-        _items[_currentItem].transform.Translate(Vector3.back * Time.deltaTime, Space.World);
+        if (_items[_currentItem].transform.position.z >= -7)
+            _items[_currentItem].transform.Translate(Vector3.back * Time.deltaTime, Space.World);
     }
 
     void ZoomOut_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Zoom Out Gesture");
-        _items[_currentItem].transform.Translate(Vector3.forward * Time.deltaTime, Space.World);
+        if (_items[_currentItem].transform.position.z <= 10)
+            _items[_currentItem].transform.Translate(Vector3.forward * Time.deltaTime, Space.World);
     }
 
 }
