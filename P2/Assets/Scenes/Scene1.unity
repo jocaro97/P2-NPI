@@ -788,7 +788,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c4346d5bd844b2941815ad68a79e5d2c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c4346d5bd844b2941815ad68a79e5d2c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -837,6 +837,10 @@ PrefabInstance:
     - target: {fileID: 400000, guid: c4346d5bd844b2941815ad68a79e5d2c, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: c4346d5bd844b2941815ad68a79e5d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -400
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4346d5bd844b2941815ad68a79e5d2c, type: 3}
@@ -1189,7 +1193,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747301860}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!124 &1747301862
 Behaviour:
   m_ObjectHideFlags: 0
@@ -1197,7 +1201,7 @@ Behaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747301860}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!92 &1747301863
 Behaviour:
   m_ObjectHideFlags: 0
@@ -1205,7 +1209,7 @@ Behaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747301860}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1747301864
 Camera:
   m_ObjectHideFlags: 0
@@ -1269,9 +1273,39 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747301860}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f0c8903624d0264f9744d39adfeac15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1772927285

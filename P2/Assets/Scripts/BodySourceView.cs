@@ -143,12 +143,12 @@ public class BodySourceView : MonoBehaviour
                 _RotateUpGesture.Update(body);
                 _RotateDownGesture.Update(body);
 
-                if(!_Bodies.ContainsKey(body.TrackingId))
-                {
-                    _Bodies[body.TrackingId] = CreateBodyObject(body.TrackingId);
-                }
+                // if(!_Bodies.ContainsKey(body.TrackingId))
+                // {
+                //     _Bodies[body.TrackingId] = CreateBodyObject(body.TrackingId);
+                // }
                 
-                RefreshBodyObject(body, _Bodies[body.TrackingId]);
+                // RefreshBodyObject(body, _Bodies[body.TrackingId]);
             }
         }
     }
@@ -250,25 +250,25 @@ public class BodySourceView : MonoBehaviour
     void RotateRight_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Rotate Right gesture");
-        _items[_currentItem].transform.Rotate(Vector3.up * 25 * Time.deltaTime, Space.World);
+        _items[_currentItem].transform.Rotate(Vector3.up * 50 * Time.deltaTime, Space.World);
     }
 
     void RotateLeft_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Rotate Left Gesture");
-        _items[_currentItem].transform.Rotate(Vector3.down * 25 * Time.deltaTime, Space.World);
+        _items[_currentItem].transform.Rotate(Vector3.down * 50 * Time.deltaTime, Space.World);
     }
     
     void RotateUp_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Rotate Up gesture");
-        _items[_currentItem].transform.Rotate(Vector3.right * 25 * Time.deltaTime, Space.World);
+        _items[_currentItem].transform.Rotate(Vector3.right * 50 * Time.deltaTime, Space.World);
     }
 
     void RotateDown_GestureRecognized(object sender, EventArgs e)
     {
         Debug.Log("Rotate Down Gesture");
-        _items[_currentItem].transform.Rotate(Vector3.left * 25 * Time.deltaTime, Space.World);
+        _items[_currentItem].transform.Rotate(Vector3.left * 50 * Time.deltaTime, Space.World);
     }
 
     void ZoomIn_GestureRecognized(object sender, EventArgs e)
