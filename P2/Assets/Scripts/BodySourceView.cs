@@ -15,7 +15,7 @@ public class BodySourceView : MonoBehaviour
     private List<Vector3> _originalPositions = new List<Vector3>();
     private List<Quaternion> _originalRotations = new List<Quaternion>();
 
-    // private Dictionary<ulong, GameObject> _Bodies = new Dictionary<ulong, GameObject>();
+    private Dictionary<ulong, GameObject> _Bodies = new Dictionary<ulong, GameObject>();
     private BodySourceManager _BodyManager;
 
     private Gesture _NextGesture = new Gesture("Next");
@@ -174,35 +174,35 @@ public class BodySourceView : MonoBehaviour
         return body;
     }
     
-    private void RefreshBodyObject(Kinect.Body body, GameObject bodyObject)
-    {
-        for (Kinect.JointType jt = Kinect.JointType.SpineBase; jt <= Kinect.JointType.ThumbRight; jt++)
-        {
-            Kinect.Joint sourceJoint = body.Joints[jt];
-            Kinect.Joint? targetJoint = null;
+    // private void RefreshBodyObject(Kinect.Body body, GameObject bodyObject)
+    // {
+    //     for (Kinect.JointType jt = Kinect.JointType.SpineBase; jt <= Kinect.JointType.ThumbRight; jt++)
+    //     {
+    //         Kinect.Joint sourceJoint = body.Joints[jt];
+    //         Kinect.Joint? targetJoint = null;
             
-            if(_BoneMap.ContainsKey(jt))
-            {
-                targetJoint = body.Joints[_BoneMap[jt]];
-            }
+    //         if(_BoneMap.ContainsKey(jt))
+    //         {
+    //             targetJoint = body.Joints[_BoneMap[jt]];
+    //         }
             
-            Transform jointObj = bodyObject.transform.Find(jt.ToString());
-            jointObj.localPosition = GetVector3FromJoint(sourceJoint);
+    //         Transform jointObj = bodyObject.transform.Find(jt.ToString());
+    //         jointObj.localPosition = GetVector3FromJoint(sourceJoint);
             
-            LineRenderer lr = jointObj.GetComponent<LineRenderer>();
-            if(targetJoint.HasValue)
-            {
-                lr.SetPosition(0, jointObj.localPosition);
-                lr.SetPosition(1, GetVector3FromJoint(targetJoint.Value));
-                lr.startColor = GetColorForState (sourceJoint.TrackingState);
-                lr.endColor = GetColorForState (targetJoint.Value.TrackingState);   
-            }
-            else
-            {
-                lr.enabled = false;
-            }
-        }
-    }
+    //         LineRenderer lr = jointObj.GetComponent<LineRenderer>();
+    //         if(targetJoint.HasValue)
+    //         {
+    //             lr.SetPosition(0, jointObj.localPosition);
+    //             lr.SetPosition(1, GetVector3FromJoint(targetJoint.Value));
+    //             lr.startColor = GetColorForState (sourceJoint.TrackingState);
+    //             lr.endColor = GetColorForState (targetJoint.Value.TrackingState);   
+    //         }
+    //         else
+    //         {
+    //             lr.enabled = false;
+    //         }
+    //     }
+    // }
     
     private static Color GetColorForState(Kinect.TrackingState state)
     {
